@@ -1,0 +1,16 @@
+<h1>Edit Color</h1>
+
+<%= form_tag "/colors/#{@color.id}", method: :patch do %>
+  
+  <%= label_tag :red %>
+  <%= text_field_tag :red, @color.red %><br>
+
+  <%= label_tag :green %>
+  <%= text_field_tag :green, @color.green %><br>
+
+  <%= label_tag :blue %>
+  <%= text_field_tag :blue, @color.blue %><br>
+
+  <%= submit_tag 'Save' %>
+
+<% end %>

@@ -1,0 +1,257 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway|Galada';
+
+$default-font: 'Raleway', sans-serif;
+$header-font: 'Galada', cursive;
+$default-font-color: #0a0a0a;
+$light-gray: #e6e6e6;
+$dark-gray: #8a8a8a;
+
+body {
+  background-image: url("bg.gif");
+  color: $default-font-color;
+  font-family: $default-font;
+}
+
+h1, h2 {
+ font-family: $header-font;
+ color: #fff;
+} 
+
+h3, h4 {
+  font-family: $default-font;
+}
+
+hr {
+  border-width: 3px;
+  margin: 5px;
+}
+
+.center {
+  text-align: center;
+}
+
+.callout {
+  text-align: center;
+}
+
+.thumbnail {
+  width: 100px;
+  height: 100px;
+}
+
+.lead {
+  margin: 5px;
+}
+
+.search-box {
+  width: 25%;
+  margin: auto;
+}
+
+.product-box {
+  transition: 1s ease; 
+}
+
+.product-box:hover {
+  border: 3px solid #D25A70;
+  transition: 1s ease;
+ }
+
+.header {
+  background-image: url("/assets/header-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 550px;
+  color: #fff;
+  padding: 10px;
+}
+
+.header2 {
+  background-image: url("/assets/header2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  color: #fff;
+  padding: 10px;
+}
+
+.header3 {
+  padding: 10px; 
+  border: 3px solid $light-gray; 
+  height: 100%;
+}
+
+//start top bar
+$menu-background: #FF6D88;
+$menu-line: #D25A70;
+
+.title-bar {
+  background: $menu-background;
+  padding: 0.9rem;
+}
+
+.top-bar {
+  background: $menu-background;
+  
+  ul {
+    background: $menu-background;
+  
+    li {
+      background: $menu-background;
+    
+        a {
+          color: #333;
+      }
+        a:hover {
+          color: #fff
+        }
+    }
+  }
+}
+
+.menu-text {
+  color: $dark-gray;
+  
+  @media only screen and (max-width: 40em) {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 40em) {
+  .menu:last-child {
+    border-left: none
+  }
+
+  .menu:first-child {
+    border-left: none;
+  }
+
+  .menu {
+    li:not(:last-child) {
+      border-right: none;
+    }
+  }
+}
+
+.dropdown.menu .submenu {
+  border: none;
+}
+
+.dropdown.menu .is-dropdown-submenu-parent.is-right-arrow>a::after {
+  border-color: #fff transparent transparent;
+}
+
+.is-drilldown-submenu-parent>a::after {
+  border-color: transparent transparent transparent #fff;
+}
+
+.js-drilldown-back::before {
+  border-color: transparent #fff transparent transparent;
+}
+
+.off-canvas-content {
+  box-shadow: unset;
+  background: transparent;
+}
+//end top bar
+
+//centered top bar
+/* Variables */
+
+// Adjust width accordingly (use even #'s)
+$logo-width: 200px;
+// Reduce px value to increase space between logo and menu text
+$logo-padding: $logo-width - 32px; 
+// Leave alone
+$logo-margin: - ($logo-width / 2);
+
+/* Small Navigation */
+.logo-small {
+  float: right;
+}
+
+.title-bar {
+  padding: 0 .5rem;
+}
+
+.menu-icon,
+.title-bar-title {
+  position: relative;
+  top: 10px;
+}
+
+/* Medium-Up Navigation */
+@media only screen and (min-width: 40rem) { 
+
+  .logo-wrapper {
+    position: relative;
+    
+    .logo {
+      width: $logo-width;
+      position: absolute;
+      left: 50%;
+      right: 50%;
+      margin-left: $logo-margin;
+    } 
+  }
+
+  // Right part
+  .top-bar-right {
+    width: 50%;
+    padding-left: $logo-padding;
+    
+    ul {
+      float: left;
+    }
+  }
+  
+  // Left part
+  .top-bar-left {
+    width:  50%;
+    padding-right: $logo-padding;
+    
+    ul {
+      float: right;
+    }
+  }
+}
+//end center nav bar
+
+//start footer
+.footer {
+  background-color: $menu-background;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 1.5rem;
+  p {
+    &.slogan {
+      color: $default-font-color;
+      font-size: 1.8rem;
+      margin: 0 0 1rem;
+    }
+    &.copywrite {
+      color: $default-font-color;
+      font-size: 0.875rem;
+      margin: 0;
+    }
+  }
+  .links a {
+    list-style: none;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 3rem 0 2rem;
+    margin: 0;
+    &::after {
+      content: "•";
+      padding: 0 0.4rem 0 0.8rem;
+    }
+    &:last-child::after {
+      content: "";
+      padding: 0 0.4rem 0 0.8rem;
+    }
+  }
+  .links a:hover {
+    color: $menu-line;
+  }
+}
+//end footer

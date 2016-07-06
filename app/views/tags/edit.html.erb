@@ -1,0 +1,13 @@
+<h1>Edit Tag</h1>
+
+Tag id: <%= @tag.id %><br>
+User id: <%= @tag.user_id %><br>
+
+<%= form_tag "/tags/#{@tag.id}", method: :patch do %>
+
+  <%= label_tag :text %>
+  <%= text_field_tag :text, @tag.text %> <br>
+
+  <%= submit_tag 'Save' %>
+
+<% end %>

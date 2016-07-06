@@ -1,0 +1,39 @@
+<h3>Add Product</h3>
+
+<%= form_tag '/products', method: :post, multipart: true do %>
+
+  <%= label_tag :name %>
+  <%= text_field_tag :name %> <br>
+
+  <%= label_tag :brand %>
+  <%= text_field_tag :brand %> <br>
+
+  <%= label_tag :finish %>
+  <%= text_field_tag :finish %> <br>
+
+  <%= label_tag :undertone %>
+  <%= text_field_tag :undertone %> <br>
+
+  <%= label_tag :product_type %>
+  <%= text_field_tag :product_type %> <br>
+
+  <%= label_tag :color_id %>
+  <%= text_field_tag :color_id %> <br> 
+
+  <%= file_field_tag :image %><br>
+
+  <%= submit_tag 'Finish' %><br><br>
+
+<% end %>
+
+<h3>Add Color</h3>
+<%= form_tag '/colors', method: :post do %>
+  
+  <%= label_tag :red %>
+  <%= text_field_tag :red %><br>
+  <%= label_tag :green %>
+  <%= text_field_tag :green %><br>
+  <%= label_tag :blue %>
+  <%= text_field_tag :blue %><br>
+  <%= submit_tag 'Finish' %><br><br>
+<% end %>

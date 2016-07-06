@@ -1,0 +1,7 @@
+<% @dupes.each do |dupe| %>
+  Dupe id: <%= dupe.id %><br>
+  Primary id: <%= link_to "#{dupe.primary_id}", "/products/#{dupe.primary_id}" %><br>
+  Secondary id: <%= link_to "#{dupe.secondary_id}", "/products/#{dupe.secondary_id}" %><br>
+  <%= link_to "Delete", "/dupes/#{dupe.id}", method: :delete %>
+  <br><br>
+<% end %>

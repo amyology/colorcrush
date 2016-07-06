@@ -1,0 +1,9 @@
+<% @tags.each do |tag| %>
+  Tag id: <%= tag.id %><br>
+  Dupe id: <%= tag.dupe_id %><br>
+  User id: <%= tag.user_id %><br>
+  Tag: <%= tag.text %><br>
+  <%= link_to "Edit", "/tags/#{tag.id}/edit" %><br>
+  <%= link_to "Delete", "/tags/#{tag.id}", method: :delete %>
+  <br><br>
+<% end %>

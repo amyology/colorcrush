@@ -1,0 +1,9 @@
+<h1>Colors</h1>
+<% @colors.each do |color| %>
+  <%= color.id %>: 
+  <%= color.red %>
+  <%= color.green %>
+  <%= color.blue %>
+  <%= link_to "Edit", "/colors/#{color.id}/edit" %> |
+  <%= link_to "Delete", "/colors/#{color.id}", method: :delete %><br><br>
+<% end %>

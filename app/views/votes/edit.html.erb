@@ -1,0 +1,13 @@
+<h1>Edit Vote</h1>
+
+<%= form_tag "/votes/#{@vote.id}", method: :patch do %>
+
+  <%= label_tag :user_id %>
+  <%= text_field_tag :user_id, @vote.user_id %> <br>
+
+  <%= label_tag :dupe_id %>
+  <%= text_field_tag :dupe_id, @vote.dupe_id %> <br>
+
+  <%= submit_tag 'Save' %>
+
+<% end %>

@@ -1,0 +1,7 @@
+<% @votes.each do |vote| %>
+  Vote id: <%= vote.id %><br>
+  Dupe id: <%= vote.dupe_id %><br>
+  User id: <%= vote.user_id %><br>
+  <%= link_to "Delete", "/votes/#{vote.id}", method: :delete %>
+  <br><br>
+<% end %>
