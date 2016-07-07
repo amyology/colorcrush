@@ -1,0 +1,35 @@
+<img src="assets/sugarpill_absinthe.jpg" class="target-image"><br>
+Dominant Color<br>
+<div class="swatch-box" id="swatch"> </div><br>
+<br><br>
+Palette<br>
+<div class="swatch-box" id="swatch0"> </div>
+<div class="swatch-box" id="swatch1"> </div>
+<div class="swatch-box" id="swatch2"> </div>
+<div class="swatch-box" id="swatch3"> </div>
+<div class="swatch-box" id="swatch4"> </div>
+<div class="swatch-box" id="swatch5"> </div>
+<div class="swatch-box" id="swatch6"> </div>
+<div class="swatch-box" id="swatch7"> </div>
+<div class="swatch-box" id="swatch8"> </div>
+
+<script type="text/javascript">
+var image = document.querySelector('.target-image');
+image.onload = function(){
+  var colorThief = new ColorThief();
+  var color = colorThief.getColor(image); 
+  var palette = colorThief.getPalette(image);
+  document.getElementById("swatch").style["background-color"] = 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
+  for (i = 0; i < palette.length; i++){
+    document.getElementById("swatch" + i).style["background-color"] = 'rgb(' + palette[i][0] + ',' + palette[i][1] + ',' + palette[i][2] + ')';
+  };
+
+  console.log(color);
+};
+// var image = new Image;
+// image.onload = function() {
+//     var colorThief = new ColorThief();
+//     var dominantColor = colorThief.getColor(image);
+// };
+// image.src = "assets/shiro_tardis.jpg";
+</script>

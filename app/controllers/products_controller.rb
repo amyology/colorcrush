@@ -2,9 +2,6 @@ class ProductsController < ApplicationController
 
   before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
-  def vibrant
-  end
-
   def colorthief
   end
 
@@ -31,21 +28,16 @@ class ProductsController < ApplicationController
     where('blue BETWEEN ? AND ?', @color.blue - 45, @color.blue + 45).take(3)
   end
 
-  def new
-    
+  def new   
   end
 
   def create
     @product = Product.create(
       name: params[:name],
       brand: params[:brand],
-      finish: params[:finish],
-      undertone: params[:undertone],
       product_type: params[:product_type],
       image: params[:image],
-      avatar: params[:avatar],
       color_id: params[:color_id]
-
       )
     flash[:success] = "Product Added"
     redirect_to "/products/#{@product.id}"
@@ -60,8 +52,6 @@ class ProductsController < ApplicationController
     @product.update(
       name: params[:name],
       brand: params[:brand],
-      finish: params[:finish],
-      undertone: params[:undertone],
       product_type: params[:product_type],
       color_id: params[:color_id],
       image: params[:image]

@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706084556) do
+ActiveRecord::Schema.define(version: 20160707004726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "colors", force: :cascade do |t|
-    t.string   "red"
-    t.string   "green"
-    t.string   "blue"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "red"
+    t.integer  "green"
+    t.integer  "blue"
   end
 
   create_table "dupes", force: :cascade do |t|
@@ -36,8 +36,12 @@ ActiveRecord::Schema.define(version: 20160706084556) do
     t.string   "brand"
     t.string   "product_type"
     t.integer  "color_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "tags", force: :cascade do |t|

@@ -26,7 +26,7 @@ class ColorsController < ApplicationController
       blue: params[:blue]
       )
     flash[:success] = "Color Updated"
-    redirect_to request.referer
+    redirect_to "/colors"
   end
 
   def destroy

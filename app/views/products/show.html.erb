@@ -2,9 +2,7 @@
 
   <p><span class="lead" style="font-size: 2rem"><%= @product.name.upcase %></span> 
     <br> <%= @product.brand %></p>
-  <%= image_tag "#{@product.image}", class: 'target-image' %>
-  <%= link_to image_tag(@product.image.url(:med)), @product.image.url %>
-  <%= image_tag @product.avatar.url(:large) %>
+    <%= image_tag @product.image.url(:medium) %>
   <br><br>
     
   <% if user_signed_in? %>
@@ -28,17 +26,20 @@
 
 <div class="row small-up-1 medium-up-2 large-up-3">
   <p style="text-align: center;font-size: 2rem" class="lead">Possible Dupes</p>
-  <% @matches.each do |match| %>
-    <% match.products.each do |product| %>
-      <div class="column">
-        <div class="callout product-box">
-          <b><%= link_to "#{product.name.upcase}", "#{product.id}" %></b><br>
-          <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
+  <% if @matches.length > 0 %>
+    <% @matches.each do |match| %>
+      <% match.products.each do |product| %>
+        <div class="column">
+          <div class="callout product-box">
+            <b><%= link_to "#{product.name.upcase}", "#{product.id}" %></b><br>
+            <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
+  <% else %>
+    <div style="text-align: center">No dupe matches.</div><br>
   <% end %>
-
 </div>
 
   <% if user_signed_in? %>
