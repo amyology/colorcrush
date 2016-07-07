@@ -94,7 +94,7 @@ $menu-line: #D25A70;
 
 .title-bar {
   background: $menu-background;
-  padding: 0.9rem;
+  padding: 1rem;
 }
 
 .top-bar {
@@ -229,7 +229,7 @@ $logo-margin: - ($logo-width / 2);
   background-color: $menu-background;
   text-align: center;
   font-size: 1.2rem;
-  padding: 1.5rem;
+  padding: 1rem;
   p {
     &.slogan {
       color: $default-font-color;

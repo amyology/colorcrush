@@ -14,20 +14,45 @@
   <%= label_tag :color_id %>
   <%= text_field_tag :color_id %> <br> 
 
-  <%= file_field_tag :image %><br>
+  <%= file_field_tag :image, id: 'pictureInput' %><br>
 
-  <%= submit_tag 'Finish' %><br><br>
+  <%= submit_tag 'Finish', class: 'button' %><br><br>
 
 <% end %>
 
+<div style="background-color: #fff" id="target"></div>
+
 <h3>Add Color</h3>
 <%= form_tag '/colors', method: :post do %>
-  
   <%= label_tag :red %>
   <%= text_field_tag :red %><br>
   <%= label_tag :green %>
   <%= text_field_tag :green %><br>
   <%= label_tag :blue %>
   <%= text_field_tag :blue %><br>
-  <%= submit_tag 'Finish' %><br><br>
+  <%= submit_tag 'Finish', class: 'button' %><br><br>
 <% end %>
+
+<script type="text/javascript">
+
+
+  
+$(function() {
+  $('#pictureInput').on('change', function(event) {
+    var files = event.target.files;
+    var previewImage = files[0]
+    var reader = new FileReader();
+    reader.onload = function(file) {
+      var img = new Image();
+      img.src = file.target.result;
+      $('#target').html(img);
+
+      var colorThief = new ColorThief();
+      var dominantColor = colorThief.getColor(img);
+      console.log(dominantColor)
+    }
+    reader.readAsDataURL(previewImage);
+  });
+});
+
+</script>

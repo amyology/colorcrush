@@ -4,6 +4,10 @@ class ColorsController < ApplicationController
     @colors = Color.all
   end
 
+  def new
+    @product = Product.find(params[:id])
+  end
+
   def create
     @color = Color.create(
       red: params[:red],
