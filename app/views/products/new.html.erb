@@ -3,7 +3,7 @@
 
   <div style="padding: 25px" class="small-12 medium-6 large-6 columns">
 
-  <%= form_for :color do |color| %>
+<!--   <%= form_for @color do |color| %>
     <%= label_tag :red %>
     <%= color.text_field :red, id: 'red' %><br>
 
@@ -31,7 +31,31 @@
 
     <%= submit_tag 'Finish', class: 'button' %>
 
-  <% end %>
+  <% end %> -->
+
+    <%= form_tag '/products', method: :post, multipart: true do %>
+
+      <%= label_tag :name %>
+      <%= text_field_tag :name %> <br>
+
+      <%= label_tag :brand %>
+      <%= text_field_tag :brand %> <br>
+
+      <%= label_tag :product_type %>
+      <%= text_field_tag :product_type %> <br>
+
+      <%= file_field_tag :image, id: 'preview' %><br>
+
+      <%= label_tag :red %>
+      <%= text_field_tag :red, nil, id: 'red' %><br>
+      <%= label_tag :green %>
+      <%= text_field_tag :green, nil, id: 'green' %><br>
+      <%= label_tag :blue %>
+      <%= text_field_tag :blue, nil, id: 'blue' %><br>
+
+      <%= submit_tag 'Finish', class: 'button' %><br><br>
+
+    <% end %>
 
   </div>
 

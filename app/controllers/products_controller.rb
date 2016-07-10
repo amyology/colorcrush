@@ -28,16 +28,19 @@ class ProductsController < ApplicationController
     where('blue BETWEEN ? AND ?', @color.blue - 45, @color.blue + 45).take(3)
   end
 
-  def new   
+  def new
+    @product = Product.new
+    @color = Color.new
   end
 
   def create
+    @color = Color.find_or_create_by(red: params[:red], green: params[:green], blue: params[:blue])
     @product = Product.create(
       name: params[:name],
       brand: params[:brand],
       product_type: params[:product_type],
       image: params[:image],
-      color_id: params[:color_id]
+      color_id: @color.id
       )
     flash[:success] = "Product Added"
     redirect_to "/products/#{@product.id}"
