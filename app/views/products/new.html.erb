@@ -1,46 +1,55 @@
+<div class="row">
 <h3>Add Product</h3>
 
-<%= form_tag '/products', method: :post, multipart: true do %>
+  <div style="padding: 25px" class="small-12 medium-6 large-6 columns">
 
-  <%= label_tag :name %>
-  <%= text_field_tag :name %> <br>
+  <%= form_for :color do |color| %>
+    <%= label_tag :red %>
+    <%= color.text_field :red, id: 'red' %><br>
 
-  <%= label_tag :brand %>
-  <%= text_field_tag :brand %> <br>
+    <%= label_tag :green %>
+    <%= color.text_field :green, id: 'green' %><br>
 
-  <%= label_tag :product_type %>
-  <%= text_field_tag :product_type %> <br>
+    <%= label_tag :blue %>
+    <%= color.text_field :blue, id: 'blue' %><br>
 
-  <%= label_tag :color_id %>
-  <%= text_field_tag :color_id %> <br> 
+    <%= color.fields_for :product, html: { multipart: true } do |product| %>
+      <%= product.file_field :image, id: 'preview' %><br>
 
-  <%= file_field_tag :image, id: 'pictureInput' %><br>
+      <%= label_tag :name %>
+      <%= product.text_field :name %> <br>
 
-  <%= submit_tag 'Finish', class: 'button' %><br><br>
+      <%= label_tag :brand %>
+      <%= product.text_field :brand %> <br>
 
-<% end %>
+      <%= label_tag :product_type %>
+      <%= product.text_field :product_type %> <br>
 
-<div style="background-color: #fff" id="target"></div>
+      <%= label_tag :color_id %>
+      <%= product.text_field :color_id, value: Color.all.length + 1 %> <br> 
+    <% end %>
 
-<h3>Add Color</h3>
-<%= form_tag '/colors', method: :post do %>
-  <%= label_tag :red %>
-  <%= text_field_tag :red %><br>
-  <%= label_tag :green %>
-  <%= text_field_tag :green %><br>
-  <%= label_tag :blue %>
-  <%= text_field_tag :blue %><br>
-  <%= submit_tag 'Finish', class: 'button' %><br><br>
-<% end %>
+    <%= submit_tag 'Finish', class: 'button' %>
+
+  <% end %>
+
+  </div>
+
+  <div style="padding: 25px" id="target" class="small-12 medium-6 large-6 columns"></div>
+
+</div>
 
 <script type="text/javascript">
 
-
-  
 $(function() {
-  $('#pictureInput').on('change', function(event) {
+  $('#preview').on('change', function(event) {
+
+    document.getElementById("red").value = "";
+    document.getElementById("green").value = "";
+    document.getElementById("blue").value = "";
+
     var files = event.target.files;
-    var previewImage = files[0]
+    var previewImage = files[0];
     var reader = new FileReader();
     reader.onload = function(file) {
       var img = new Image();
@@ -49,7 +58,12 @@ $(function() {
 
       var colorThief = new ColorThief();
       var dominantColor = colorThief.getColor(img);
-      console.log(dominantColor)
+
+      document.getElementById("red").value = dominantColor[0];
+      document.getElementById("green").value = dominantColor[1];
+      document.getElementById("blue").value = dominantColor[2];
+
+      console.log(dominantColor);
     }
     reader.readAsDataURL(previewImage);
   });

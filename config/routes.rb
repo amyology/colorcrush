@@ -43,5 +43,5 @@ Rails.application.routes.draw do
   patch '/colors/:id' => 'colors#update'
   delete 'colors/:id' => 'colors#destroy'
   get '/colors/:id' => 'colors#show'
-  
+
 end

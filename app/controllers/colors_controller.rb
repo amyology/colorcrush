@@ -14,8 +14,6 @@ class ColorsController < ApplicationController
       green: params[:green],
       blue: params[:blue]
       )
-    flash[:success] = "Color Added"
-    redirect_to request.referer
   end
 
   def edit
