@@ -1,4 +1,4 @@
-<img src="assets/sugarpill_absinthe.jpg" class="target-image"><br>
+<img src="assets/shiro_tardis.jpg" class="target-image"><br>
 Dominant Color<br>
 <div class="swatch-box" id="swatch"> </div><br>
 <br><br>
@@ -17,7 +17,7 @@ Palette<br>
 var image = document.querySelector('.target-image');
 image.onload = function(){
   var colorThief = new ColorThief();
-  var color = colorThief.getColor(image); 
+  var color = colorThief.getColor(image);
   var palette = colorThief.getPalette(image);
   document.getElementById("swatch").style["background-color"] = 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
   for (i = 0; i < palette.length; i++){

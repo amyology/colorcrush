@@ -1,37 +1,17 @@
 <div class="row">
-<h3>Add Product</h3>
 
   <div style="padding: 25px" class="small-12 medium-6 large-6 columns">
 
-<!--   <%= form_for @color do |color| %>
-    <%= label_tag :red %>
-    <%= color.text_field :red, id: 'red' %><br>
+    <h3>Add Product</h3> <br>
 
-    <%= label_tag :green %>
-    <%= color.text_field :green, id: 'green' %><br>
+    <%= form_tag '/search', method: :get do %>
 
-    <%= label_tag :blue %>
-    <%= color.text_field :blue, id: 'blue' %><br>
+      <%= label_tag :keyword %>
+      <%= text_field_tag :keyword %><br>
 
-    <%= color.fields_for :product, html: { multipart: true } do |product| %>
-      <%= product.file_field :image, id: 'preview' %><br>
+      <%= submit_tag 'Search' %>
 
-      <%= label_tag :name %>
-      <%= product.text_field :name %> <br>
-
-      <%= label_tag :brand %>
-      <%= product.text_field :brand %> <br>
-
-      <%= label_tag :product_type %>
-      <%= product.text_field :product_type %> <br>
-
-      <%= label_tag :color_id %>
-      <%= product.text_field :color_id, value: Color.all.length + 1 %> <br> 
     <% end %>
-
-    <%= submit_tag 'Finish', class: 'button' %>
-
-  <% end %> -->
 
     <%= form_tag '/products', method: :post, multipart: true do %>
 
@@ -44,22 +24,24 @@
       <%= label_tag :product_type %>
       <%= text_field_tag :product_type %> <br>
 
-      <%= file_field_tag :image, id: 'preview' %><br>
+      <%= file_field_tag :image, id: 'preview' %><br><br>
 
-      <%= label_tag :red %>
-      <%= text_field_tag :red, nil, id: 'red' %><br>
-      <%= label_tag :green %>
-      <%= text_field_tag :green, nil, id: 'green' %><br>
-      <%= label_tag :blue %>
-      <%= text_field_tag :blue, nil, id: 'blue' %><br>
+      <%= hidden_field_tag :red, nil, id: 'red' %>
 
-      <%= submit_tag 'Finish', class: 'button' %><br><br>
+      <%= hidden_field_tag :green, nil, id: 'green' %>
+
+      <%= hidden_field_tag :blue, nil, id: 'blue' %>
+
+      <%= submit_tag 'Finish', class: 'button' %><br>
 
     <% end %>
 
   </div>
 
-  <div style="padding: 25px" id="target" class="small-12 medium-6 large-6 columns"></div>
+  <div style="padding: 25px" class="small-12 medium-6 large-6 columns">
+    <div id="target"></div><br>
+    <div class="swatch-box" id="swatch"></div><br>
+  </div>
 
 </div>
 
@@ -86,6 +68,8 @@ $(function() {
       document.getElementById("red").value = dominantColor[0];
       document.getElementById("green").value = dominantColor[1];
       document.getElementById("blue").value = dominantColor[2];
+
+      document.getElementById("swatch").style["background-color"] = 'rgb(' + dominantColor[0] + ',' + dominantColor[1] + ',' + dominantColor[2] + ')';
 
       console.log(dominantColor);
     }

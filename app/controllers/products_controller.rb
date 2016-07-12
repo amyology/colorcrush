@@ -16,6 +16,16 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    keyword = params[:keyword]
+    if keyword.blank? == false
+      @search = Unirest.get("http://api.shopstyle.com/api/v2/products?pid=uid6409-34524403-45&fts=#{keyword}&offset=0&limit=20").products
+    else
+      redirect_to '/'
+    end
+    
+  end
+
   def show
     @product = Product.find(params[:id])
     @options = Product.all.map { |product| [product.name, product.id] }
