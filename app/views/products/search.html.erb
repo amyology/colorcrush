@@ -1,1 +1,3 @@
-<%= @search %>
+<% @result.each do |p| %>
+  <p><%= image_tag "#{p['image']['sizes']['Large']['url']}" %></p>
+<% end %>

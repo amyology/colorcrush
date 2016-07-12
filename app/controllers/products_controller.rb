@@ -19,7 +19,8 @@ class ProductsController < ApplicationController
   def search
     keyword = params[:keyword]
     if keyword.blank? == false
-      @search = Unirest.get("http://api.shopstyle.com/api/v2/products?pid=uid6409-34524403-45&fts=#{keyword}&offset=0&limit=20").products
+      request = Unirest.get("http://api.shopstyle.com/api/v2/products?pid=uid6409-34524403-45&fts=#{keyword}&offset=0&limit=20").body
+      @result = request['products']
     else
       redirect_to '/'
     end
