@@ -26,9 +26,7 @@
       <%= file_field_tag :image, id: 'preview' %><br><br>
 
       <%= hidden_field_tag :red, nil, id: 'red' %>
-
       <%= hidden_field_tag :green, nil, id: 'green' %>
-
       <%= hidden_field_tag :blue, nil, id: 'blue' %>
 
       <%= submit_tag 'Finish', class: 'button' %><br>
@@ -39,9 +37,25 @@
 
   <div style="padding: 25px" class="small-12 medium-6 large-6 columns">
     <div id="target"></div><br>
-    <div class="swatch-box" id="swatch"></div><br>
+    <div id="alsoHide">
+      Product Color:<br>
+      <div class="swatch-box" id="swatch" onclick="changeDominant()"></div><br>
+    </div>
   </div>
 
+</div>
+
+<div id="hide">
+  Not the right color? Choose from the following:<br>
+  <div class="swatch-box" id="swatch0" onclick="changeColor(0)"> </div>
+  <div class="swatch-box" id="swatch1" onclick="changeColor(1)"> </div>
+  <div class="swatch-box" id="swatch2" onclick="changeColor(2)"> </div>
+  <div class="swatch-box" id="swatch3" onclick="changeColor(3)"> </div>
+  <div class="swatch-box" id="swatch4" onclick="changeColor(4)"> </div>
+  <div class="swatch-box" id="swatch5" onclick="changeColor(5)"> </div>
+  <div class="swatch-box" id="swatch6" onclick="changeColor(6)"> </div>
+  <div class="swatch-box" id="swatch7" onclick="changeColor(7)"> </div>
+  <div class="swatch-box" id="swatch8" onclick="changeColor(8)"> </div>
 </div>
 
 <script type="text/javascript">
@@ -62,7 +76,8 @@ $(function() {
       $('#target').html(img);
 
       var colorThief = new ColorThief();
-      var dominantColor = colorThief.getColor(img);
+      window.dominantColor = colorThief.getColor(img);
+      window.palette = colorThief.getPalette(img);
 
       document.getElementById("red").value = dominantColor[0];
       document.getElementById("green").value = dominantColor[1];
@@ -70,10 +85,49 @@ $(function() {
 
       document.getElementById("swatch").style["background-color"] = 'rgb(' + dominantColor[0] + ',' + dominantColor[1] + ',' + dominantColor[2] + ')';
 
-      console.log(dominantColor);
+      for (i = 0; i < palette.length; i++){
+        document.getElementById('swatch' + i).style['background-color'] = 'rgb(' + palette[i][0] + ',' + palette[i][1] + ',' + palette[i][2] + ')';
+
+      document.getElementById("hide").style.display = "block";
+      document.getElementById("alsoHide").style.display = "block";
+
+      };
     }
     reader.readAsDataURL(previewImage);
   });
 });
+
+function changeColor(number){
+  for (i = 0; i < window.palette.length; i++){
+    document.getElementById('swatch' + i).style['border'] = 'none';
+  };
+
+  document.getElementById("red").value = "";
+  document.getElementById("green").value = "";
+  document.getElementById("blue").value = "";
+
+  document.getElementById('red').value = window.palette[number][0];
+  document.getElementById('green').value = window.palette[number][1];
+  document.getElementById('blue').value = window.palette[number][2];
+
+  console.log(window.palette[number])
+
+  document.getElementById('swatch' + number).style['border'] = '3px solid #D25A70';
+};
+
+function changeDominant(){
+  document.getElementById('swatch').style['border'] = 'none';
+  document.getElementById("red").value = "";
+  document.getElementById("green").value = "";
+  document.getElementById("blue").value = "";
+
+  document.getElementById('red').value = window.dominantColor[0];
+  document.getElementById('green').value = window.dominantColor[1];
+  document.getElementById('blue').value = window.dominantColor[2];
+
+  console.log(window.dominantColor)
+
+  document.getElementById('swatch').style['border'] = '3px solid #D25A70';
+};
 
 </script>

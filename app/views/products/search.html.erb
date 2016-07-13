@@ -3,9 +3,10 @@
     <div class="column">
       <div class="callout product-box">
         <span class="lead"><%= p['brand']['name'] %></span><br>
-        <%= image_tag "#{p['image']['sizes']['Large']['url']}" %><br>
-        <% p['alternateImages'].each do |a| %>
-          <%= image_tag "#{a['sizes']['Large']['url']}" %>
+        <%= p['unbrandedName'] %><br>
+        <% p['colors'].each do |a| %>
+          <%= a['name'] %><br>
+          <%= image_tag "#{a['swatchUrl']}" %><br>
         <% end %>
       </div>
     </div>
