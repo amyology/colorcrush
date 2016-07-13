@@ -9,6 +9,16 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+
+    <script type="text/javascript">
+      $(window).scroll(function(){
+          if($(window).scrollTop() > 0) {
+              $('.top').addClass('shadow');
+          } else {
+              $('.top').removeClass('shadow');
+          }
+      });
+    </script>
   </head>
 
 <body>
@@ -19,7 +29,7 @@
     <!-- off-canvas title bar for 'small' screen -->
     <div class="title-bar" data-responsive-toggle="widemenu" data-responsive-toggle="nav-menu" data-hide-for="medium">
       <div class="title-bar-left">
-        <span class="title-bar-title" style="font-size: 1.5rem; font-family: Galada"><%= link_to 'ColorCrush', '/', {:style => "color: #fff"} %></span>
+        <span class="title-bar-title" style="font-size: 1.5rem"><%= link_to 'ColorCrush', '/' %></span>
       </div>
       <div class="title-bar-right">
         <span class="title-bar-title">
@@ -34,7 +44,8 @@
     </div>
 
   <!-- off-canvas right menu -->
-  <nav class="top-bar" id="nav-menu">
+  <div data-sticky-container>
+  <nav class="top-bar" id="nav-menu" data-sticky data-options="marginTop:0;" style="width:100%">
     <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
       <ul class="vertical dropdown menu" data-dropdown-menu>
         <% if user_signed_in? %>
@@ -50,12 +61,12 @@
     </div>
 
     <!-- "wider" top-bar menu for 'medium' and up -->
-    <div id="widemenu" class="top-bar">
+    <div id="widemenu" class="top-bar top">
       <div class="top-bar-left">
         <ul class="menu">
           <li class="menu-text"><%= form_tag '/', method: :get do %>
           <%= text_field_tag :search, nil, placeholder: "Search for products" %></li>
-          <li><%= submit_tag "Search", class: 'button secondary' %>
+          <li><%= submit_tag "Search", class: 'button' %>
         <% end %></li>
         </ul>
 <!--         <ul class="menu">
@@ -73,7 +84,7 @@
         <ul class="dropdown menu" data-dropdown-menu>
           <li class="has-submenu">
             <% if user_signed_in? %>
-              <span style="font-size: 1.3rem"><a href="#">Profile</a></span>
+              <span style="font-size: 1.3rem"><a href="#" class="menu-link" style="background-color: transparent; color: #8a8a8a">Profile</a></span>
             <% else %>
               <%= link_to 'Register', '/users/sign_up' %>
             <% end %>
@@ -92,6 +103,7 @@
         </ul>
 
       </div>
+    </div>
     </div>
   </nav>
 
@@ -122,6 +134,7 @@
   </div>
 </div>
 
+<div data-sticky-container>
 <footer class="footer">
   <div class="row">
     <div class="small-12 columns">
@@ -136,6 +149,7 @@
     </div>
   </div>
 </footer>
+</div>
 
 </body>
 
