@@ -1,31 +1,56 @@
-<img src="assets/shiro_tardis.jpg" class="target-image"><br>
-Dominant Color<br>
+<img src="assets/nars_lippencil.jpg" class="target-image"><br>
+Product Color<br>
 <div class="swatch-box" id="swatch"> </div><br>
-<br><br>
-Palette<br>
-<div class="swatch-box" id="swatch0"> </div>
-<div class="swatch-box" id="swatch1"> </div>
-<div class="swatch-box" id="swatch2"> </div>
-<div class="swatch-box" id="swatch3"> </div>
-<div class="swatch-box" id="swatch4"> </div>
-<div class="swatch-box" id="swatch5"> </div>
-<div class="swatch-box" id="swatch6"> </div>
-<div class="swatch-box" id="swatch7"> </div>
-<div class="swatch-box" id="swatch8"> </div>
+
+<%= form_tag '/', method: :post do %>
+  <%= text_field_tag :red, nil, id: 'red' %><br>
+  <%= text_field_tag :green, nil, id: 'green' %><br>
+  <%= text_field_tag :blue, nil, id: 'blue' %><br>
+<% end %>
+
+Not the right color? Choose from the following:<br>
+<div class="swatch-box" id="swatch0" onclick="changeColor(0)"> </div>
+<div class="swatch-box" id="swatch1" onclick="changeColor(1)"> </div>
+<div class="swatch-box" id="swatch2" onclick="changeColor(2)"> </div>
+<div class="swatch-box" id="swatch3" onclick="changeColor(3)"> </div>
+<div class="swatch-box" id="swatch4" onclick="changeColor(4)"> </div>
+<div class="swatch-box" id="swatch5" onclick="changeColor(5)"> </div>
+<div class="swatch-box" id="swatch6" onclick="changeColor(6)"> </div>
+<div class="swatch-box" id="swatch7" onclick="changeColor(7)"> </div>
+<div class="swatch-box" id="swatch8" onclick="changeColor(8)"> </div>
 
 <script type="text/javascript">
 var image = document.querySelector('.target-image');
 image.onload = function(){
   var colorThief = new ColorThief();
-  var color = colorThief.getColor(image);
-  var palette = colorThief.getPalette(image);
-  document.getElementById("swatch").style["background-color"] = 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
+  window.color = colorThief.getColor(image);
+  window.palette = colorThief.getPalette(image);
+  document.getElementById('swatch').style['background-color'] = 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
+
   for (i = 0; i < palette.length; i++){
-    document.getElementById("swatch" + i).style["background-color"] = 'rgb(' + palette[i][0] + ',' + palette[i][1] + ',' + palette[i][2] + ')';
+    document.getElementById('swatch' + i).style['background-color'] = 'rgb(' + palette[i][0] + ',' + palette[i][1] + ',' + palette[i][2] + ')';
   };
 
   console.log(color);
+  console.log(palette);
 };
+
+function changeColor(number){
+  for (i = 0; i < window.palette.length; i++){
+    document.getElementById('swatch' + i).style['border'] = 'none';
+  };
+
+  document.getElementById("red").value = "";
+  document.getElementById("green").value = "";
+  document.getElementById("blue").value = "";
+
+  document.getElementById('red').value = window.palette[number][0];
+  document.getElementById('green').value = window.palette[number][1];
+  document.getElementById('blue').value = window.palette[number][2];
+
+  document.getElementById('swatch' + number).style['border'] = '3px solid #D25A70';
+};
+
 // var image = new Image;
 // image.onload = function() {
 //     var colorThief = new ColorThief();

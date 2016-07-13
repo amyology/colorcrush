@@ -6,12 +6,11 @@
 
     <%= form_tag '/search', method: :get do %>
 
-      <%= label_tag :keyword %>
-      <%= text_field_tag :keyword %><br>
+      Search for makeup:<br>
+      <%= text_field_tag :keyword %>
+      <%= submit_tag 'Search', class: 'button' %>
 
-      <%= submit_tag 'Search' %>
-
-    <% end %>
+    <% end %> <br>
 
     <%= form_tag '/products', method: :post, multipart: true do %>
 

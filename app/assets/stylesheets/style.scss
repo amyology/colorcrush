@@ -29,7 +29,13 @@ hr {
 .swatch-box {
   width: 150px;
   height: 150px;
+  float: left;
+  margin: 5px;
   }
+
+.swatch-box:hover {
+  border: 3px solid #D25A70;
+ }
 
 .center {
   text-align: center;
