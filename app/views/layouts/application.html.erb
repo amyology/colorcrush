@@ -44,8 +44,7 @@
     </div>
 
   <!-- off-canvas right menu -->
-  <div data-sticky-container>
-  <nav class="top-bar" id="nav-menu" data-sticky data-options="marginTop:0;" style="width:100%">
+  <nav class="top-bar" id="nav-menu">
     <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
       <ul class="vertical dropdown menu" data-dropdown-menu>
         <% if user_signed_in? %>
@@ -61,7 +60,8 @@
     </div>
 
     <!-- "wider" top-bar menu for 'medium' and up -->
-    <div id="widemenu" class="top-bar top">
+    <div data-sticky-container>
+    <div id="widemenu" class="top-bar top" data-sticky data-options="marginTop:0;" style="width:100%; padding: 1rem">
       <div class="top-bar-left">
         <ul class="menu">
           <li class="menu-text"><%= form_tag '/', method: :get do %>

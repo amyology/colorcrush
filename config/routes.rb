@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/products/:id' => 'products#show'
   get '/search' => 'products#search'
 
+  get '/view-product/:id' => 'products#view_product'
+
   get '/colorthief' => 'products#colorthief'
   
   get '/user' => 'users#index'

@@ -2,7 +2,7 @@
 
   <p><span class="lead" style="font-size: 2rem"><%= @product.name.upcase %></span> 
     <br> <%= @product.brand %></p>
-    <%= image_tag @product.image.url(:medium) %><br>
+    <%= image_tag @product.image.url(:medium) %><br><br>
     
   <% if user_signed_in? %>
     <div style="text-align: left; width: 15%" class="search-box">
@@ -32,7 +32,8 @@
       <% match.products.each do |product| %>
         <div class="column">
           <div class="callout product-box">
-            <b><%= link_to "#{product.name.upcase}", "#{product.id}" %></b><br>
+            <%= link_to "#{product.brand.upcase}", "/?search=#{product.brand}" %><br>
+            <b><%= link_to "#{product.name}", "#{product.id}" %></b><br>
             <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
           </div>
         </div>

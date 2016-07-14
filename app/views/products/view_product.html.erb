@@ -1,0 +1,6 @@
+<%= @product['brand']['name'] %>
+<% @product['colors'].each do |p| %>
+  <%= p['name'] %><br>
+  <%= image_tag "#{p['swatchUrl']}" %><br><br>
+<% end %>
+

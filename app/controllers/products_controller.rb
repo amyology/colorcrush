@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
       request = Unirest.get("http://api.shopstyle.com/api/v2/products?pid=uid6409-34524403-45&fts=#{keyword}&offset=0&limit=20").body
       @result = request['products']
     else
-      redirect_to '/'
+      redirect_to '/products/new'
     end
     
   end
@@ -37,6 +37,10 @@ class ProductsController < ApplicationController
     where('red BETWEEN ? AND ?', @color.red - 45, @color.red + 45).
     where('green BETWEEN ? AND ?', @color.green - 45, @color.green + 45).
     where('blue BETWEEN ? AND ?', @color.blue - 45, @color.blue + 45).take(3)
+  end
+
+  def view_product
+    @product = Unirest.get("http://api.shopstyle.com/api/v2/products/#{params[:id]}?pid=uid6409-34524403-45").body
   end
 
   def new
