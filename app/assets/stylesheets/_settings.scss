@@ -233,12 +233,13 @@ $breadcrumbs-item-slash: true;
 // 11. Button
 // ----------
 
-$button-padding: 0.85em 1em;
+$button-padding: 0.6em 0.6em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
-$button-background-hover: scale-color($button-background, $lightness: -15%);
-$button-color: $white;
+$button-background-hover: $primary-color;
+// $button-background-hover: scale-color($button-background, $lightness: -15%);
+$button-color: $primary-color;
 $button-color-alt: $black;
 $button-radius: $global-radius;
 $button-sizes: (
@@ -345,10 +346,10 @@ $input-color: $black;
 $input-placeholder-color: $medium-gray;
 $input-font-family: inherit;
 $input-font-size: rem-calc(16);
-$input-background: $white;
-$input-background-focus: $white;
+$input-background: transparent;
+$input-background-focus: transparent;
 $input-background-disabled: $light-gray;
-$input-border: 3px solid $light-gray;
+$input-border: 3px solid $medium-gray;
 $input-border-focus: 3px solid $dark-gray;
 $input-shadow: none;
 $input-shadow-focus: none;

@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
 
     search = params[:search]
 
-    if search
+    if search.blank? == false
       @searched = @products.where("name ILIKE ? OR brand ILIKE ? OR product_type ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
     end
   end

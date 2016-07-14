@@ -32,7 +32,7 @@
         <span class="title-bar-title" style="font-size: 1.5rem"><%= link_to 'ColorCrush', '/' %></span>
       </div>
       <div class="title-bar-right">
-        <span class="title-bar-title">
+        <span class="title-bar-title" style="color: #8a8a8a">
           <% if user_signed_in? %>
             Profile
           <% else %>
@@ -137,15 +137,15 @@
 <div data-sticky-container>
 <footer class="footer">
   <div class="row">
-    <div class="small-12 columns">
+    <div class="large-12 medium-12 small-12 columns">
       <p class="slogan">ColorCrush</p>
       <p class="links">
-        <a href="/">Home</a>
-        <a href="#">About</a>
+        <a href="/"> Home </a>
+        <a href="/"> About </a>
 <!--         <a href="#">Faq</a> -->
-        <a href="#">Contact</a>
+        <a href="/"> Contact</a>
       </p>
-      <p class="copywrite">Last Words</p>
+<!--       <p class="copywrite">Last Words</p> -->
     </div>
   </div>
 </footer>

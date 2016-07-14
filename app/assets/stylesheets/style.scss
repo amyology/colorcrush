@@ -11,7 +11,6 @@ $menu-line: #D25A70;
 $accent-color: #FF1744;
 
 body {
-  // background-image: url("bg.gif");
   color: $default-font-color;
   font-family: $default-font;
 }
@@ -37,6 +36,7 @@ a:hover {
 
 .menu-link {
   border-bottom: 3px solid $menu-background;
+  margin: 0 20px 0 0;
 }
 
 .menu-link:hover {
@@ -96,7 +96,7 @@ a:hover {
   background-image: url("/assets/header-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 550px;
+  height: 400px;
   color: #fff;
   padding: 10px;
 }
@@ -112,14 +112,30 @@ a:hover {
 
 .header3 {
   padding: 10px; 
-  border: 3px solid $light-gray; 
+  border: 3px solid #fff; 
   height: 100%;
 }
 
 .main-title {
+  font-size: 3rem; 
+  font-family: $header-font;
+  color: #fff;
+  padding: 10px;
+}
+
+.small-title {
   font-size: 2.5rem; 
   font-family: $header-font;
-  color: $dark-gray;
+  color: $accent-color;
+}
+
+.button {
+  border: 3px solid $accent-color;
+  background: transparent;
+}
+
+.button:hover {
+  color: #fff;
 }
 
 //start top bar
@@ -178,15 +194,15 @@ a:hover {
 }
 
 .dropdown.menu .is-dropdown-submenu-parent.is-right-arrow>a::after {
-  border-color: #fff transparent transparent;
+  border-color: $dark-gray transparent transparent;
 }
 
 .is-drilldown-submenu-parent>a::after {
-  border-color: transparent transparent transparent #fff;
+  border-color: transparent transparent transparent $dark-gray;
 }
 
 .js-drilldown-back::before {
-  border-color: transparent #fff transparent transparent;
+  border-color: transparent $dark-gray transparent transparent;
 }
 
 .off-canvas-content {
@@ -289,7 +305,7 @@ $logo-margin: - ($logo-width / 2);
     }
     &:last-child::after {
       content: "";
-      padding: 0 0.4rem 0 0.8rem;
+      padding: 0;
     }
   }
   .links a:hover {
