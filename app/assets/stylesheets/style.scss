@@ -1,6 +1,6 @@
-@import 'https://fonts.googleapis.com/css?family=Roboto|Quicksand';
+@import 'https://fonts.googleapis.com/css?family=Pavanam|Quicksand';
 
-$default-font: 'Roboto', sans-serif;
+$default-font: 'Pavanam', sans-serif;
 $header-font: 'Quicksand', sans-serif;
 $default-font-color: #0a0a0a;
 $light-gray: #e6e6e6;
@@ -9,6 +9,10 @@ $dark-gray: #8a8a8a;
 $menu-background: #F5F5F5;
 $menu-line: #D25A70;
 $accent-color: #FF1744;
+
+.target {
+  border: 3px solid $accent-color;
+}
 
 body {
   color: $default-font-color;
@@ -91,6 +95,15 @@ a:hover {
 //   border: 3px solid $menu-line;
 //   transition: 1s ease;
 //  }
+
+.icon {
+  transition: 0.5s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2, 1.2);
+  transition: 0.5s ease;
+}
 
 .header {
   background-image: url("/assets/header-bg.jpg");

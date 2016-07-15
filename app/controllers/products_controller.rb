@@ -50,13 +50,15 @@ class ProductsController < ApplicationController
 
   def create
     @color = Color.find_or_create_by(red: params[:red], green: params[:green], blue: params[:blue])
-    @product = Product.create(
+    @product = Product.new(
       name: params[:name],
       brand: params[:brand],
       product_type: params[:product_type],
       image: params[:image],
-      color_id: @color.id
+      color_id: @color.id,
+      image: product.picture_from_url
       )
+    @product.save
     flash[:success] = "Product Added"
     redirect_to "/products/#{@product.id}"
   end

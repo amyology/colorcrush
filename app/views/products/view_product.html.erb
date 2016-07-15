@@ -1,6 +1,45 @@
 <%= @product['brand']['name'] %>
 <% @product['colors'].each do |p| %>
   <%= p['name'] %><br>
-  <%= image_tag "#{p['swatchUrl']}" %><br><br>
+  <img src="<%= p['swatchUrl'] %>" onclick="selectImage()" class="image"> <br><br>
 <% end %>
 
+<%= form_tag '/products', method: :post, multipart: true do %>
+
+  <%= label_tag :name %>
+  <%= text_field_tag :name %> <br>
+
+  <%= label_tag :brand %>
+  <%= text_field_tag :brand %> <br>
+
+  <%= label_tag :product_type %>
+  <%= text_field_tag :product_type %> <br>
+
+  <%= text_field_tag :image %><br><br>
+
+  <%= hidden_field_tag :red, nil, id: 'red' %>
+  <%= hidden_field_tag :green, nil, id: 'green' %>
+  <%= hidden_field_tag :blue, nil, id: 'blue' %>
+
+  <%= submit_tag 'Finish', class: 'button' %><br>
+
+<% end %>
+
+<script type="text/javascript">
+
+function selectImage(){
+  var images = document.getElementsByClassName("image");
+  for (var i = 0; i < images.length; i++){
+    images[i].className = "target";
+  };
+
+  // var image = document.querySelector('.target');
+  // var colorThief = new ColorThief();
+  // window.color = colorThief.getColor(image);
+  // window.palette = colorThief.getPalette(image);
+
+  // console.log(color);
+  // console.log(palette);
+};
+
+</script>

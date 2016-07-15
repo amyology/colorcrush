@@ -3,21 +3,24 @@
   <p><span class="lead" style="font-size: 2rem"><%= @product.name.upcase %></span> 
     <br> <%= link_to "#{@product.brand}", "/?search=#{@product.brand}" %></p>
     <%= image_tag @product.image.url(:medium) %><br><br>
+    <div class="search-box" style="height: 30px; background-color: rgb(<%= @color.red %>, <%= @color.green %>, <%= @color.blue %>)"></div> <br>
     
   <% if user_signed_in? %>
-    <div style="text-align: left; width: 15%" class="search-box">
-      <div style="height: 50px; width: 180px; background-color: rgb(<%= @color.red %>, <%= @color.green %>, <%= @color.blue %>)"></div> <br>
-      <%= form_tag '/wishlist', method: :post do %>
-        <%= hidden_field_tag :product_id, @product.id %>
-        <%= image_submit_tag('/assets/heart.gif') %> Add to Wishlist<br>
-      <% end %>
-      <%= form_tag '/traincase', method: :post do %>
-        <%= hidden_field_tag :product_id, @product.id %>
-        <%= image_submit_tag('/assets/case.gif') %> Add to Traincase<br>
-      <% end %>
+    <div style="text-align: left; width: 25%; margin: auto">
+      <div style="width: 50%; float: left">
+        <%= form_tag '/wishlist', method: :post do %>
+          <%= hidden_field_tag :product_id, @product.id %>
+          <%= image_submit_tag('/assets/heart.gif', class: 'icon') %> Add to Wishlist<br>
+        <% end %>
+      </div>
+      <div style="width: 50%; float: left">
+        <%= form_tag '/traincase', method: :post do %>
+          <%= hidden_field_tag :product_id, @product.id %>
+          <%= image_submit_tag('/assets/case.gif', class: 'icon') %> Add to Traincase<br>
+        <% end %>
+      </div>
     </div>
   <% else %>
-    <div style="height: 20px; width: 100px; float: center; background-color: rgb(<%= @color.red %>, <%= @color.green %>, <%= @color.blue %>)"></div>
     <p><%= link_to 'Sign In', '/users/sign_in' %> to add to Traincase or Wishlist</p>
   <% end %>
 

@@ -118,10 +118,12 @@
             <%= submit_tag "Search", class: 'button' %>
           <% end %>
         </div>
-
-        <% flash.each do |name, message| %>
-            <%= message.upcase %>
-        <% end %>
+        
+        <div class="center">
+          <% flash.each do |name, message| %>
+              <br> <%= message.upcase %>
+          <% end %>
+        </div>
 
         <br>
 

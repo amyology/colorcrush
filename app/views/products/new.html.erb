@@ -6,12 +6,13 @@
 
     <%= form_tag '/search', method: :get do %>
 
-      Search for makeup:<br>
+      Search for a makeup product:<br>
       <%= text_field_tag :keyword %>
       <%= submit_tag 'Search', class: 'button' %>
 
     <% end %> <br>
 
+    Or add your own:<br>
     <%= form_tag '/products', method: :post, multipart: true do %>
 
       <%= label_tag :name %>
@@ -47,15 +48,9 @@
 
 <div id="hide">
   Not the right color? Choose from the following:<br>
-  <div class="swatch-box" id="swatch0" onclick="changeColor(0)"> </div>
-  <div class="swatch-box" id="swatch1" onclick="changeColor(1)"> </div>
-  <div class="swatch-box" id="swatch2" onclick="changeColor(2)"> </div>
-  <div class="swatch-box" id="swatch3" onclick="changeColor(3)"> </div>
-  <div class="swatch-box" id="swatch4" onclick="changeColor(4)"> </div>
-  <div class="swatch-box" id="swatch5" onclick="changeColor(5)"> </div>
-  <div class="swatch-box" id="swatch6" onclick="changeColor(6)"> </div>
-  <div class="swatch-box" id="swatch7" onclick="changeColor(7)"> </div>
-  <div class="swatch-box" id="swatch8" onclick="changeColor(8)"> </div>
+  <% 9.times do |number| %>
+    <div class="swatch-box" id="swatch<%= number %>" onclick="changeColor(<%= number %>)"> </div>
+  <% end %>
 </div>
 
 <script type="text/javascript">
@@ -113,7 +108,7 @@ function changeColor(number){
 
   console.log(window.palette[number])
 
-  document.getElementById('swatch' + number).style['border'] = '3px solid #D25A70';
+  document.getElementById('swatch' + number).style['border'] = '3px solid #FF1744';
 };
 
 function changeDominant(){
@@ -131,7 +126,7 @@ function changeDominant(){
 
   console.log(window.dominantColor)
 
-  document.getElementById('swatch').style['border'] = '3px solid #D25A70';
+  document.getElementById('swatch').style['border'] = '3px solid #FF1744';
 };
 
 </script>

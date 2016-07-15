@@ -9,15 +9,9 @@ Product Color<br>
 <% end %>
 
 Not the right color? Choose from the following:<br>
-<div class="swatch-box" id="swatch0" onclick="changeColor(0)"> </div>
-<div class="swatch-box" id="swatch1" onclick="changeColor(1)"> </div>
-<div class="swatch-box" id="swatch2" onclick="changeColor(2)"> </div>
-<div class="swatch-box" id="swatch3" onclick="changeColor(3)"> </div>
-<div class="swatch-box" id="swatch4" onclick="changeColor(4)"> </div>
-<div class="swatch-box" id="swatch5" onclick="changeColor(5)"> </div>
-<div class="swatch-box" id="swatch6" onclick="changeColor(6)"> </div>
-<div class="swatch-box" id="swatch7" onclick="changeColor(7)"> </div>
-<div class="swatch-box" id="swatch8" onclick="changeColor(8)"> </div>
+<% 9.times do |number| %>
+  <div class="swatch-box" id="swatch<%= number %>" onclick="changeColor(<%= number %>)"> </div>
+<% end %>
 
 <script type="text/javascript">
 var image = document.querySelector('.target-image');
