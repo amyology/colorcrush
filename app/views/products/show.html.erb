@@ -1,23 +1,27 @@
+<div ng-app="app" ng-controller="productsCtrl">
+
 <div class="row" style="text-align: center">
 
   <p><span class="lead" style="font-size: 2rem"><%= @product.name.upcase %></span> 
     <br> <%= link_to "#{@product.brand}", "/?search=#{@product.brand}" %></p>
     <%= image_tag @product.image.url(:medium) %><br><br>
-    <div class="search-box" style="height: 30px; background-color: rgb(<%= @color.red %>, <%= @color.green %>, <%= @color.blue %>)"></div> <br>
+    <div class="columns small-12 medium-3 medium-centered large-3 large-centered" style="height: 1rem; background-color: rgb(<%= @color.red %>, <%= @color.green %>, <%= @color.blue %>)"></div> <br>
     
   <% if user_signed_in? %>
-    <div style="text-align: left; width: 25%; margin: auto">
-      <div style="width: 50%; float: left">
-        <%= form_tag '/wishlist', method: :post do %>
-          <%= hidden_field_tag :product_id, @product.id %>
-          <%= image_submit_tag('/assets/heart.gif', class: 'icon') %> Add to Wishlist<br>
-        <% end %>
-      </div>
-      <div style="width: 50%; float: left">
-        <%= form_tag '/traincase', method: :post do %>
-          <%= hidden_field_tag :product_id, @product.id %>
-          <%= image_submit_tag('/assets/case.gif', class: 'icon') %> Add to Traincase<br>
-        <% end %>
+    <div class="row">
+      <div class="columns small-12 medium-3 medium-centered large-3 large-centered">
+        <div style="width: 50%; float: left">
+          <%= form_tag '/wishlist', method: :post do %>
+            <%= hidden_field_tag :product_id, @product.id %>
+            <%= image_submit_tag('https://s3-us-west-2.amazonaws.com/colorcrush/heart.gif', class: 'icon') %> Add to Wishlist<br>
+          <% end %>
+        </div>
+        <div style="width: 50%; float: left">
+          <%= form_tag '/traincase', method: :post do %>
+            <%= hidden_field_tag :product_id, @product.id %>
+            <%= image_submit_tag('https://s3-us-west-2.amazonaws.com/colorcrush/case.gif', class: 'icon') %> Add to Traincase<br>
+          <% end %>
+        </div>
       </div>
     </div>
   <% else %>
@@ -28,15 +32,15 @@
 
 <div class="row"> <hr> </div>
 
-<div class="row small-up-1 medium-up-2 large-up-3">
+<div class="row small-up-1 medium-up-3 large-up-4">
   <p style="text-align: center;font-size: 2rem" class="lead">Possible Dupes</p>
   <% if @matches.length > 0 %>
     <% @matches.each do |match| %>
       <% match.products.each do |product| %>
         <div class="column">
-          <div class="callout product-box">
-            <%= link_to "#{product.brand.upcase}", "/?search=#{product.brand}" %><br>
-            <b><%= link_to "#{product.name}", "#{product.id}" %></b><br>
+          <div class="callout">
+            <b><%= link_to "#{product.name.upcase}", "#{product.id}" %></b><br>
+            <%= link_to "#{product.brand}", "/?search=#{product.brand}" %><br>
             <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
           </div>
         </div>
@@ -48,13 +52,24 @@
 </div>
 
   <% if user_signed_in? %>
-    <div class="callout search-box">
-      Suggest a dupe:
-      <%= form_tag '/dupes', method: :post do %>
-        <%= hidden_field_tag :primary_id, @product.id %>
-        <%= select_tag(:secondary_id, options_for_select(@options)) %>
-        <%= submit_tag 'Submit', class: 'button' %>
-      <% end %>
+    <div class="row">
+      <div class="columns small-12 medium-3 medium-centered large-3 large-centered info-box">
+        Suggest a dupe:
+        <%= form_tag '/dupes', method: :post do %>
+          <%= hidden_field_tag :primary_id, @product.id %>
+          <%= select_tag(:secondary_id, options_for_select(@options)) %>
+
+          <div ng-repeat="product in products">{{ product.name }}</div>
+
+          <datalist id="products">
+            <option ng-repeat="product in products">{{ product.name }}</option>
+          </datalist>
+
+          <input list="products" placeholder="Search"><br><br>
+
+          <%= submit_tag 'Submit', class: 'button' %>
+        <% end %>
+      </div>
     </div>
   <% end %>  <br> 
 
@@ -64,7 +79,7 @@
     <p class="lead" style="text-align: center; font-size: 2rem">Dupes</p>
     <% @top_dupes.each do |item| %>
       <div class="column">
-        <div class="callout product-box">
+        <div class="callout">
           <b><%= link_to "#{item.product.name.upcase}", "#{item.product.id}" %></b> <br>
           <%= link_to image_tag("#{item.product.image}", class: 'thumbnail'), "#{item.product.id}" %> <br>
             <% if item.votes.count == 1 %>
@@ -76,29 +91,28 @@
           <% if user_signed_in? %>
             <%= form_tag '/votes', method: :post do %>
               <%= hidden_field_tag :dupe_id, item.id %> 
-              <%= submit_tag 'Yes' %><br>
+              <%= submit_tag 'Yes', class: 'button' %>
             <% end %>
           <% else %>
             <%= link_to 'Sign In', '/users/sign_in' %> to vote.
           <% end %>
 
-          <br><br>
-
           <% if item.tags.length != 0 %>
-          Compared to <b><%= @product.name %></b>, <br> <b><%= item.product.name %></b> is <br>
+          Compared to <b><%= @product.name %></b>, <b><%= item.product.name %></b> is <br>
             <% item.tags.select(:text).group(:text).having("count(*) >= 1").take(5).each do |tag| %>
               <%= tag.text %> &nbsp; 
-            <% end %> <br><br>
+            <% end %>
           <% end %>
 
           <% if user_signed_in? %>
             <%= form_tag '/tags', method: :post do %>
               <%= hidden_field_tag :dupe_id, item.id %>      
-              What do you think? <%= text_field_tag :text %> <%= submit_tag 'Submit' %>
+              <%= text_field_tag :text, nil, placeholder: 'tag' %> 
+              <%= submit_tag 'Submit', class: 'button' %>
             <% end %>
           <% else %>
             <%= link_to 'Sign In', '/users/sign_in' %> to add tags.
-          <% end %> <br>
+          <% end %>
 
         </div>
       </div>
@@ -107,9 +121,14 @@
 </div>
 
 <% if user_signed_in? && current_user.admin %>
-  <div class="search-box callout">
-    <b>Admin Functions</b><br>
-    <%= link_to "Edit", "/products/#{@product.id}/edit" %> |
-    <%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
-  </div> <br>
+  <hr> <br>
+  <div class="row">
+    <div class="columns small-12 medium-3 medium-centered large-3 large-centered info-box">
+      <b>Admin Functions</b><br>
+      <%= link_to "Edit", "/products/#{@product.id}/edit" %> |
+      <%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
+    </div> 
+  </div><br>
 <% end %>
+
+</div>

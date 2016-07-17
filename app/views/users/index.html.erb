@@ -14,9 +14,8 @@
         <div class="columns">
           <div class="callout">
             <p><a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a></p>
-            <p class="">Product Name: <%= item.name %><br>
-            Brand: <%= item.brand %><br>
-            Product Type: <%= item.product_type %></p>
+            <p><%= link_to item.name.upcase, "/products/#{item.id}" %><br>
+            <%= item.brand %></p>
           </div>
         </div>
       <% end %>
@@ -35,9 +34,8 @@
         <div class="columns">
           <div class="callout">
             <p><a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a><br>
-            Product Name: <%= item.name %><br>
-            Brand: <%= item.brand %><br>
-            Product Type: <%= item.product_type %></p>
+            <%= link_to item.name.upcase, "/products/#{item.id}" %><br>
+            <%= item.brand %></p>
           </div>
         </div>
       <% end %>

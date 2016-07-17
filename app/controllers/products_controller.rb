@@ -7,12 +7,12 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    @recent_products = Product.all.sort_by { |product| [product.created_at, product.updated_at].max }.reverse!.take(5)
+    @recent_products = Product.all.sort_by { |product| [product.created_at, product.updated_at].max }.reverse!.take(6)
 
-    search = params[:search]
+    @search_term = params[:search]
 
-    if search.blank? == false
-      @searched = @products.where("name ILIKE ? OR brand ILIKE ? OR product_type ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+    if @search_term.blank? == false
+      @searched = @products.where("name ILIKE ? OR brand ILIKE ? OR product_type ILIKE ?", "%#{@search_term}%", "%#{@search_term}%", "%#{@search_term}%")
     end
   end
 
@@ -43,6 +43,10 @@ class ProductsController < ApplicationController
     @product = Unirest.get("http://api.shopstyle.com/api/v2/products/#{params[:id]}?pid=uid6409-34524403-45").body
   end
 
+  def browse
+    @products = Product.all
+  end
+
   def new
     @product = Product.new
     @color = Color.new
@@ -55,8 +59,8 @@ class ProductsController < ApplicationController
       brand: params[:brand],
       product_type: params[:product_type],
       image: params[:image],
-      color_id: @color.id,
-      image: product.picture_from_url
+      color_id: @color.id
+      # image: product.picture_from_url
       )
     @product.save
     flash[:success] = "Product Added"

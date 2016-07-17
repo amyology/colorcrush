@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   delete '/products/:id' => 'products#destroy'
   get '/products/:id' => 'products#show'
   get '/search' => 'products#search'
+  get '/browse' => 'products#browse'
 
   get '/view-product/:id' => 'products#view_product'
 

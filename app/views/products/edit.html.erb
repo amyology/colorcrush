@@ -1,4 +1,6 @@
-<h1>Edit Product</h1>
+<h2>Edit Product Information</h2>
+
+<%= image_tag @product.image.url(:medium) %>
 
 <%= form_tag "/products/#{@product.id}", method: :patch do %>
 
@@ -8,20 +10,8 @@
   <%= label_tag :brand %>
   <%= text_field_tag :brand, @product.brand %> <br>
 
-  <%= label_tag :finish %>
-  <%= text_field_tag :finish, @product.finish %> <br>
-
-  <%= label_tag :undertone %>
-  <%= text_field_tag :undertone, @product.undertone %> <br>
-
   <%= label_tag :product_type %>
   <%= text_field_tag :product_type, @product.product_type %> <br>
-
-  <%= label_tag :color_id %>
-  <%= text_field_tag :color_id, @product.color_id %> <br>
-
-  <%= label_tag :image %>
-  <%= text_field_tag :image, @product.image %> <br>
 
   <%= submit_tag 'Save' %>
 

@@ -1,0 +1,15 @@
+<div class="row small-up-1 medium-up-3 large-up-4">
+<span class="lead">View All Products</span><br><br>
+  <% @products.each do |product| %>
+    <div class="column">
+      <div class="callout">    
+        <p><a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a></p>
+        <span class="lead"><%= link_to product.name, "/products/#{product.id}" %></span><br>
+        <span class="subheader"><%= link_to product.brand, "/?search=#{product.brand}" %></span><br>
+        <%= link_to product.product_type, "/?search=#{product.product_type}" %>
+        </p>
+
+      </div>
+    </div>
+  <% end %>
+</div>

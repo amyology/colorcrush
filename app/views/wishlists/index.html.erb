@@ -2,7 +2,7 @@
   <div class="hide-for-small-only medium-12 large-12 columns header2">
     <div class="header3">
       <span class="main-title animated fadeIn">Wishlist</span>
-      <p class="lead animated fadeIn" style="padding: 0 15px">Things I want</p>
+      <p class="lead fadeInSlow" style="padding: 0 15px">Things I want</p>
     </div>
   </div>
 
@@ -20,7 +20,7 @@
 
   <% @wishlist.each do |item| %>
     <div class="column">
-      <div class="callout product-box">
+      <div class="callout">
         <p><a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a></p>
         <p class="lead"><%= link_to "#{item.name.upcase}", "/products/#{item.id}" %></p>
         <p class="subheader"><%= item.brand %></p>

@@ -1,12 +1,11 @@
 <div class="row">
-
   <% if !@searched %>
     
     <div class="hide-for-small-only medium-12 large-12 columns header">
       <div class="header3">      
         <span class="main-title animated fadeIn">ColorCrush</span>
         <div style="padding: 1rem">
-          <p class="animated fadeIn">Blurb goes here. <br> Blurb blurb blurb.<br> Bluuurb.</p>
+          <p class="fadeInSlow">Blurb goes here. <br> Blurb blurb blurb.<br> Bluuurb.</p>
         </div>
       </div>
     </div>
@@ -18,45 +17,53 @@
     </div>
 
   <% end %>
-
 </div>
 
-<div class="row small-up-1 medium-up-2 large-up-3">
-
-  <% if @searched %>
+<% if @searched %>
+  <div class="row small-up-1 medium-up-3 large-up-4">
     <% if @searched.length > 0 %>
-      <p class="lead">Results</p>
+      <p class="lead">Results for <i><%= @search_term %></i> :</p>
       <% @searched.each do |product| %>
         <div class="column">
-          <div class="callout product-box">
+          <div class="callout">
             <p><a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a></p>
-            <p class="lead"><a href="/products/<%= product.id %>"><%= product.name %></a></p>
+            <p class="lead"><a href="/products/<%= product.id %>"><%= product.name.upcase %></a></p>
             <p class="subheader"><%= product.brand %></p>
+            <p class="subheader"><%= product.product_type %></p>
           </div>
         </div>
       <% end %>  
     <% else %>
       <div class="column">
-        <p class="lead">No results.</p> 
+        <p class="lead">No results for <i><%= @search_term %></i>.</p> 
           Try another search.
       </div>
     <% end %>
 
-  <% else %>
+<% else %>
+  <div class="row small-up-1 medium-up-4 large-up-6">
     <p class="lead">Recently Added</p>
       <% @recent_products.each do |product| %>
-        <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a>
+        <div class="column">
+          <div class="callout">
+            <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
+            <a href="/products/<%= product.id %>"><p class="lead"><%= product.name %></a><br>
+            <div class="subheader"><%= link_to product.brand, "/?search=#{product.brand}" %></div>
+          </div>
+        </div>
       <% end %>
 
-    <hr>
+  </div>
+<hr>
 
-    <p class="lead">All Products</p>
+    <p class="lead"><%= link_to 'View All', '/browse' %></p>
+    <div class="row small-up-1 medium-up-2 large-up-3">
       <% @products.each do |product| %>
         <div class="column">
-          <div class="callout product-box">    
+          <div class="callout">    
             <p><a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a></p>
             <a href="/products/<%= product.id %>"><p class="lead"><%= product.name %></a></p>
-            <p class="subheader"><%= product.brand %></p>
+            <p class="subheader"><%= link_to product.brand, "/?search=#{product.brand}" %></p>
           </div>
         </div>
       <% end %>
