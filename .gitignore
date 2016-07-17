@@ -16,3 +16,5 @@
 /config/application.yml
 
 .DS_Store
+.byebug_history
+public/system/products/images/*
