@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_admin!, only: [:edit, :update, :destroy]
 
   def colorthief
   end
