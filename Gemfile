@@ -29,7 +29,7 @@ gem 'foundation-rails', '~> 6.2', '>= 6.2.3.0'
 
 gem 'paperclip', '~> 5.0'
 
-gem 'figaro', '~> 1.1', '>= 1.1.1' 
+# gem 'figaro', '~> 1.1', '>= 1.1.1' 
 
 gem 'unirest'
 
