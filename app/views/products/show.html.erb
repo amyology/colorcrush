@@ -59,8 +59,6 @@
           <%= hidden_field_tag :primary_id, @product.id %>
           <%= select_tag(:secondary_id, options_for_select(@options)) %>
 
-          <div ng-repeat="product in products">{{ product.name }}</div>
-
           <datalist id="products">
             <option ng-repeat="product in products">{{ product.name }}</option>
           </datalist>

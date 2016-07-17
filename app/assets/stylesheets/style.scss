@@ -157,6 +157,14 @@ a:hover {
   animation: fadeIn 3s;
 }
 
+#product {
+  border: 3px solid $dark-gray;
+}
+
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
 //start top bar
 .title-bar {
   background: $menu-background;

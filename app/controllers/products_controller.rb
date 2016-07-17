@@ -59,8 +59,8 @@ class ProductsController < ApplicationController
       brand: params[:brand],
       product_type: params[:product_type],
       image: params[:image],
-      color_id: @color.id
-      # image: product.picture_from_url
+      color_id: @color.id,
+      image: @image_remote_url
       )
     @product.save
     flash[:success] = "Product Added"
