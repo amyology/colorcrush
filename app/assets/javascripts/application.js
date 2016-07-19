@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require angular
 //= require app
-//= require lazy-scroll.min
 //= require foundation
 //= require color-thief
 //= require_tree .
