@@ -8,6 +8,15 @@
       $scope.products = response.data;
     });
 
+    $scope.sortBy = function(attribute){
+      if (attribute != $scope.orderAttribute){
+        $scope.ascdesc = false;
+      } else {
+        $scope.ascdesc = !$scope.ascdesc;
+      }
+      $scope.orderAttribute = attribute;
+    };
+
   });
 
 }());

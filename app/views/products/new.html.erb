@@ -13,12 +13,13 @@
 </div>
 
 <div class="row">
-  <div class="lead" style="padding: 0 1rem">Or add your own:</div><br>
   <div style="padding: 0 1rem" class="small-12 medium-6 large-6 columns">
+    <div class="lead">Or add your own:</div>
 
     <%= form_tag '/products', method: :post, multipart: true do %>
-
-      <%= file_field_tag :image, id: 'preview', accept: 'image/png,image/gif,image/jpeg' %><br>
+      
+      <label for="preview" class="button">Upload File</label>
+      <%= file_field_tag :image, id: 'preview', class: 'show-for-sr', accept: 'image/png,image/gif,image/jpeg' %><br>
 
       <%= label_tag :name %>
       <%= text_field_tag :name %> <br>
@@ -47,7 +48,6 @@
   </div>
 
 </div>
-
 
 <div id="hide" class="row">
   Not the right color? Choose from the following:<br>

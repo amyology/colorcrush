@@ -2,9 +2,6 @@ class ProductsController < ApplicationController
 
   before_action :authenticate_admin!, only: [:edit, :update, :destroy]
 
-  def colorthief
-  end
-
   def index
     @products = Product.all
     @recent_products = Product.all.sort_by { |product| [product.created_at, product.updated_at].max }.reverse!.take(6)
@@ -24,7 +21,6 @@ class ProductsController < ApplicationController
     else
       redirect_to '/products/new'
     end
-    
   end
 
   def show
@@ -34,9 +30,9 @@ class ProductsController < ApplicationController
 
     @color = Color.find(@product.color_id)
     @matches = Color.where.not('red = ? AND green = ? AND blue = ?', @color.red, @color.green, @color.blue).
-    where('red BETWEEN ? AND ?', @color.red - 45, @color.red + 45).
-    where('green BETWEEN ? AND ?', @color.green - 45, @color.green + 45).
-    where('blue BETWEEN ? AND ?', @color.blue - 45, @color.blue + 45).take(3)
+    where('red BETWEEN ? AND ?', @color.red - 40, @color.red + 40).
+    where('green BETWEEN ? AND ?', @color.green - 40, @color.green + 40).
+    where('blue BETWEEN ? AND ?', @color.blue - 40, @color.blue + 40).take(3)
   end
 
   def view_product
@@ -61,9 +57,12 @@ class ProductsController < ApplicationController
       image: params[:image],
       color_id: @color.id
       )
-    @product.save
-    flash[:success] = "Product Added"
-    redirect_to "/products/#{@product.id}"
+    if @product.save
+      flash[:success] = "Product Successfully Added."
+      redirect_to "/products/#{@product.id}"
+    else
+      redirect_to request.referer
+    end
   end
 
   def edit

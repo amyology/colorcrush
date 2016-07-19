@@ -7,7 +7,7 @@
   </div>
 
   <div class="show-for-small-only small-12 columns">
-    <span style="font-size: 2rem">Wishlist</span> <br>
+    <span style="font-size: 2rem" class="accent-color">Wishlist</span> <br>
     <div style="padding: 5px">Things I want</div>
   </div>
 </div>
@@ -23,13 +23,13 @@
       <div class="callout">
         <p><a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a></p>
         <p class="lead"><%= link_to "#{item.name.upcase}", "/products/#{item.id}" %></p>
-        <p class="subheader"><%= item.brand %></p>
+        <p class="subheader"><%= link_to item.brand, "/?search=#{item.brand}" %></p>
       </div>
     </div>
   <% end %>
 
 <% else %>
-  No products added yet.
+  <div style="padding: 1rem">Nothing added yet. <%= link_to 'Add some products.', '/browse' %></div>
 <% end %>
 
 </div>

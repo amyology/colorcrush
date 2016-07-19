@@ -10,7 +10,6 @@ $menu-background: #F5F5F5;
 $menu-line: #D25A70;
 $accent-color: #FF1744;
 
-
 body {
   color: $default-font-color;
   font-family: $default-font;
@@ -29,6 +28,14 @@ h3, h4 {
 hr {
   border-width: 0.2rem;
   margin: 0.5rem;
+}
+
+.header-font {
+  font-family: $header-font;
+}
+
+.accent-color {
+  color: $accent-color;
 }
 
 .top-line {
@@ -84,6 +91,18 @@ a:hover {
 
 .info-box {
   padding: 1rem;
+  background-color: #fefefe;
+}
+
+.product-box {
+  padding: 1rem 5rem;
+  margin: 1rem;
+  background-color: #fefefe;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  float: left;
+  text-align: center;
+  overflow: hidden;
 }
 
 .thumbnail {
@@ -128,6 +147,15 @@ a:hover {
   height: 100%;
 }
 
+.header4 {
+  background-image: url("https://s3-us-west-2.amazonaws.com/colorcrush/header3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  color: #fff;
+  padding: 10px;
+}
+
 .main-title {
   font-size: 3rem; 
   font-family: $header-font;
@@ -163,6 +191,10 @@ a:hover {
 
 input::-webkit-calendar-picker-indicator {
   display: none;
+}
+
+input { 
+  outline: none; 
 }
 
 //start top bar
@@ -348,3 +380,19 @@ $logo-margin: - ($logo-width / 2);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
+
+//sticky footer
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  margin: 0 auto -140px; /* the bottom margin is the negative value of the footer's height */
+}
+footer, .push {
+  height: 140px; /* '.push' must be the same height as 'footer' */
+}
+// end sticky footer

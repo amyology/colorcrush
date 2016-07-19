@@ -5,7 +5,8 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :brand, presence: true
   validates :product_type, presence: true
-  validates :image, presence: true
+  # validates :image, presence: true
+  validates_uniqueness_of :name, :scope => :brand
 
   has_many :traincases
   has_many :wishlists
@@ -20,14 +21,25 @@ class Product < ActiveRecord::Base
 
   belongs_to :color
 
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }#, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  attr_reader :image_remote_url
+  before_validation :download_remote_image, :if => :image_url_provided?
 
-  def image_remote_url=(url_value)
-    self.image = URI.parse(url_value)
-    @image_remote_url = url_value
+  validates_presence_of :image_remote_url, :if => :image_url_provided?, :message => 'is invalid or inaccessible'
+  
+  private
+  
+  def image_url_provided?
+    !self.image_url.blank?
+  end
+  
+  def download_remote_image
+    io = open(URI.parse(image_url))
+    self.original_filename = io.base_uri.path.split('/').last
+    self.image = io
+    self.image_remote_url = image_url
+  rescue
   end
 
 end

@@ -1,15 +1,23 @@
-<div class="row small-up-1 medium-up-3 large-up-4">
-<span class="lead">View All Products (<%= @products.length %>)</span><br><br>
-  <% @products.each do |product| %>
-    <div class="column">
-      <div class="callout">    
-        <p><a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a></p>
-        <span class="lead"><%= link_to product.name, "/products/#{product.id}" %></span><br>
-        <span class="subheader"><%= link_to product.brand, "/?search=#{product.brand}" %></span><br>
-        <%= link_to product.product_type, "/?search=#{product.product_type}" %>
-        </p>
+<div ng-app="app" ng-controller="productsCtrl">
 
-      </div>
-    </div>
-  <% end %>
+<span class="lead">View All Products (<%= @products.length %>)</span><br><br>
+
+<datalist id="products">
+  <option ng-repeat="product in products">{{ product.name }}</option>
+</datalist>
+
+<input ng-model="nameFilter" list="products" placeholder="Search by name" style="border: 0.2rem solid #cacaca; padding: 0.2rem">
+<br><br>
+
+<div ng-click="sortBy('name')">Sort A-Z</div>
+
+<div ng-repeat="product in products | filter:{name: nameFilter} | orderBy:orderAttribute:ascdesc track by $index">
+  <div class="product-box">
+    <p><a href="/products/{{ product.id }}" class="thumbnail"><img src="{{ product.image }}"></a></p> 
+    <span class="lead"><a href="/products/{{ product.id }}">{{ product.name }}</a></span><br>
+    <span class="subheader"><a href="?search={{ product.brand }}">{{ product.brand }}</a></span><br>
+    <a href="/?search={{ product.product_type }}">{{ product.product_type }}</a>
+  </div>
+</div>
+
 </div>

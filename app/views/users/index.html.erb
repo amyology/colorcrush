@@ -1,5 +1,14 @@
-<h1>Profile</h1>
-<p><%= link_to "Add a Product", '/products/new' %></p>
+<div class="row">
+  <div class="hide-for-small-only medium-12 large-12 columns header4">
+    <div class="header3">
+      <span class="main-title animated fadeIn">Profile</span>
+    </div>
+  </div>
+</div>
+
+<br>
+<p style="font-size: 1.5rem"><a href="/products/new"><b>+</b></a>
+  <%= link_to "Add a New Product", '/products/new' %></p>
 
 <div class="row">
 
@@ -8,16 +17,19 @@
     <div class="row small-up-1 medium-up-2 large-up-2" style="margin: 0 5px 0 0">
       <h3><%= link_to 'Traincase', '/traincase' %></h3>
 
-        <p class="lead">Recently Added</p>
-
-      <% @traincase.each do |item| %>
-        <div class="columns">
-          <div class="callout">
-            <p><a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a></p>
-            <p><%= link_to item.name.upcase, "/products/#{item.id}" %><br>
-            <%= item.brand %></p>
+      <% if @wishlist.length > 0 %>
+      <p class="lead">Recently Added</p>
+        <% @traincase.each do |item| %>
+          <div class="columns">
+            <div class="callout">
+              <p><a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a></p>
+              <p><%= link_to item.name.upcase, "/products/#{item.id}" %><br>
+              <%= item.brand %></p>
+            </div>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        Nothing added yet. <%= link_to 'Add some products.', '/browse' %>
       <% end %>
     </div>
 
@@ -28,16 +40,19 @@
     <div class="row small-up-1 medium-up-6 large-up-2" style="margin: 0 0 0 5px">
       <h3><%= link_to 'Wishlist', '/wishlist' %></h3>
 
+      <% if @wishlist.length > 0 %>
         <p class="lead">Recently Added</p>
-
-      <% @wishlist.each do |item| %>
-        <div class="columns">
-          <div class="callout">
-            <p><a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a><br>
-            <%= link_to item.name.upcase, "/products/#{item.id}" %><br>
-            <%= item.brand %></p>
+        <% @wishlist.each do |item| %>
+          <div class="columns">
+            <div class="callout">
+              <p><a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a><br>
+              <%= link_to item.name.upcase, "/products/#{item.id}" %><br>
+              <%= item.brand %></p>
+            </div>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        Nothing added yet. <%= link_to 'Add some products.', '/browse' %>
       <% end %>
 
     </div>

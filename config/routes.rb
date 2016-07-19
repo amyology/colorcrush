@@ -15,11 +15,7 @@ Rails.application.routes.draw do
   get '/browse' => 'products#browse'
 
   get '/view-product/:id' => 'products#view_product'
-
-  get '/colorthief' => 'products#colorthief'
-  
   get '/user' => 'users#index'
-
   get '/traincase' => 'traincases#index'
   post '/traincase' => 'traincases#create'
 

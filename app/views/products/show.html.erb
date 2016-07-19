@@ -1,11 +1,10 @@
 <div ng-app="app" ng-controller="productsCtrl">
 
 <div class="row" style="text-align: center">
-
   <p><span class="lead" style="font-size: 2rem"><%= @product.name.upcase %></span> 
     <br> <%= link_to "#{@product.brand}", "/?search=#{@product.brand}" %></p>
     <%= image_tag @product.image.url(:medium) %><br><br>
-    <div class="columns small-12 medium-3 medium-centered large-3 large-centered" style="height: 1rem; background-color: rgb(<%= @color.red %>, <%= @color.green %>, <%= @color.blue %>)"></div> <br>
+    <div class="columns small-12 medium-3 medium-centered large-3 large-centered" style="height: 1.5rem; background-color: rgb(<%= @color.red %>, <%= @color.green %>, <%= @color.blue %>)"></div> <br>
     
   <% if user_signed_in? %>
     <div class="row">
@@ -27,7 +26,6 @@
   <% else %>
     <p><%= link_to 'Sign In', '/users/sign_in' %> to add to Traincase or Wishlist</p>
   <% end %>
-
 </div>
 
 <div class="row"> <hr> </div>
@@ -57,19 +55,14 @@
         Suggest a dupe:
         <%= form_tag '/dupes', method: :post do %>
           <%= hidden_field_tag :primary_id, @product.id %>
+
           <%= select_tag(:secondary_id, options_for_select(@options)) %>
-
-          <datalist id="products">
-            <option ng-repeat="product in products">{{ product.name }}</option>
-          </datalist>
-
-          <input list="products" placeholder="Search"><br><br>
 
           <%= submit_tag 'Submit', class: 'button' %>
         <% end %>
       </div>
     </div>
-  <% end %>  <br> 
+  <% end %> <br>
 
 <div class="row small-up-1 medium-up-2 large-up-3">
   <% if @top_dupes.length > 0 %>
@@ -85,14 +78,14 @@
             <% elsif item.votes.count > 0 %>
               <%= item.votes.count %> people think <%= item.product.name %> is a dupe.<br>
             <% end %>
-          Is <%= item.product.name %> a dupe?
+          Is <%= item.product.name %> a dupe?<br>
           <% if user_signed_in? %>
             <%= form_tag '/votes', method: :post do %>
               <%= hidden_field_tag :dupe_id, item.id %> 
               <%= submit_tag 'Yes', class: 'button' %>
             <% end %>
           <% else %>
-            <%= link_to 'Sign In', '/users/sign_in' %> to vote.
+            <%= link_to 'Sign In', '/users/sign_in' %> to vote. <br>
           <% end %>
 
           <% if item.tags.length != 0 %>

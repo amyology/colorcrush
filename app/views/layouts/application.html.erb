@@ -22,6 +22,7 @@
   </head>
 
 <body>
+<div class="wrapper">
 
 <div class="top-line"></div>
 <div class="off-canvas-wrapper">
@@ -30,7 +31,7 @@
     <!-- off-canvas title bar for 'small' screen -->
     <div class="title-bar" data-responsive-toggle="widemenu" data-responsive-toggle="nav-menu" data-hide-for="medium">
       <div class="title-bar-left">
-        <span class="title-bar-title" style="font-size: 1.5rem"><%= link_to 'ColorCrush', '/' %></span>
+        <span class="title-bar-title header-font" style="font-size: 1.5rem"><%= link_to 'ColorCrush', '/' %></span>
       </div>
       <div class="title-bar-right">
         <span class="title-bar-title" style="color: #8a8a8a">
@@ -70,9 +71,6 @@
           <li><%= submit_tag "Search", class: 'button' %>
         <% end %></li>
         </ul>
-<!--         <ul class="menu">
-          <li class="menu-text" style="font-size: 1.5rem"><%= link_to 'ColorCrush', '/', {:style => "color: #fff"} %></li>
-        </ul> -->
       </div>  
 
       <div class="logo-wrapper hide-for-small-only">
@@ -124,9 +122,7 @@
           <% flash.each do |name, message| %>
               <br> <%= message.upcase %>
           <% end %>
-        </div>
-
-        <br>
+        </div> <br>
 
         <%= yield %>
 
@@ -137,22 +133,21 @@
   </div>
 </div>
 
-<div data-sticky-container>
+</div>
+<div class="push"></div>
+
 <footer class="footer">
   <div class="row">
     <div class="large-12 medium-12 small-12 columns">
       <p class="slogan">ColorCrush</p>
       <p class="links">
         <a href="/"> Home </a>
-        <a href="/"> About </a>
-<!--         <a href="#">Faq</a> -->
-        <a href="/"> Contact</a>
+        <a href="#"> About </a>
+        <a href="#"> Contact</a>
       </p>
-<!--       <p class="copywrite">Last Words</p> -->
     </div>
   </div>
 </footer>
-</div>
 
 </body>
 
