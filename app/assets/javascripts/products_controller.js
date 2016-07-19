@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module("app").controller("productsCtrl", function($scope,$http) {
+  angular.module("app").controller("productsCtrl", ["$scope", "$http", function($scope,$http) {
 
     $http.get("/products.json").then(function(response){
       $scope.products = response.data;
@@ -17,6 +17,6 @@
       $scope.orderAttribute = attribute;
     };
 
-  });
+  }]);
 
 }());
