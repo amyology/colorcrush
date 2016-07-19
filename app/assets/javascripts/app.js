@@ -2,6 +2,6 @@
 
   "use strict";
 
-  angular.module("app", ["lazy-scroll"]);
+  angular.module("app", []);
 
 }());

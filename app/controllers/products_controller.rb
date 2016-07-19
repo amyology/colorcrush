@@ -30,9 +30,9 @@ class ProductsController < ApplicationController
 
     @color = Color.find(@product.color_id)
     @matches = Color.where.not('red = ? AND green = ? AND blue = ?', @color.red, @color.green, @color.blue).
-    where('red BETWEEN ? AND ?', @color.red - 40, @color.red + 40).
-    where('green BETWEEN ? AND ?', @color.green - 40, @color.green + 40).
-    where('blue BETWEEN ? AND ?', @color.blue - 40, @color.blue + 40).take(3)
+    where('red BETWEEN ? AND ?', @color.red - 35, @color.red + 35).
+    where('green BETWEEN ? AND ?', @color.green - 35, @color.green + 35).
+    where('blue BETWEEN ? AND ?', @color.blue - 35, @color.blue + 35).take(3)
   end
 
   def view_product
