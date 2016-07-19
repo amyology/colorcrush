@@ -1,5 +1,3 @@
-require "open-uri"
-
 class Product < ActiveRecord::Base
 
   validates :name, presence: true
@@ -23,23 +21,5 @@ class Product < ActiveRecord::Base
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-
-  before_validation :download_remote_image, :if => :image_url_provided?
-
-  validates_presence_of :image_remote_url, :if => :image_url_provided?, :message => 'is invalid or inaccessible'
-  
-  private
-  
-  def image_url_provided?
-    !self.image_url.blank?
-  end
-  
-  def download_remote_image
-    io = open(URI.parse(image_url))
-    self.original_filename = io.base_uri.path.split('/').last
-    self.image = io
-    self.image_remote_url = image_url
-  rescue
-  end
 
 end
