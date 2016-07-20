@@ -1,3 +1,5 @@
+<div ng-app="app" ng-controller="productsCtrl">
+
 <div class="row">
   <% if !@searched %>
     
@@ -5,14 +7,14 @@
       <div class="header3">      
         <span class="main-title animated fadeIn">ColorCrush</span>
         <div style="padding: 1rem">
-          <p class="fadeInSlow">Find dupes.</p>
+          <p class="fadeInSlow">Find makeup. <br> Find dupes.</p>
         </div>
       </div>
     </div>
 
     <div class="show-for-small-only" style="padding: 1rem">
       <span class="small-title">ColorCrush</span> <br>
-      Blurb stuff here.
+      <div style="margin: 0 0.5rem">Find makeup. Find Dupes. <br></div>
       <hr>
     </div>
 
@@ -42,36 +44,37 @@
 
 <% else %>
   <div class="row small-up-1 medium-up-4 large-up-6">
-    <p class="lead">Recently Added</p>
+    <p class="lead" style="margin: 1rem">Recently Added</p>
       <% @recent_products.each do |product| %>
-        <div class="column">
+        <div class="columns">
           <div class="callout">
             <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
-            <a href="/products/<%= product.id %>"><p class="lead"><%= product.name %></a><br>
-            <div class="subheader"><%= link_to product.brand, "/?search=#{product.brand}" %></div>
-          </div>
-        </div>
-      <% end %>
-
-  </div>
-<hr>
-
-    <p class="lead"><%= link_to 'View All', '/browse' %></p>
-    <div class="row small-up-1 medium-up-2 large-up-3">
-      <% @products.each do |product| %>
-        <div class="column">
-          <div class="callout">    
-            <p><a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a></p>
-            <a href="/products/<%= product.id %>"><p class="lead"><%= product.name %></a></p>
+            <p class="lead"><a href="/products/<%= product.id %>"><%= product.name %></a></p>
             <p class="subheader"><%= link_to product.brand, "/?search=#{product.brand}" %></p>
           </div>
         </div>
       <% end %>
-  <% end %>
+  </div>
+<hr>
 
-<!--   <div class="row column">
-    <a class="button hollow expanded">Load More</a>
-  </div> -->
+    <p class="lead"><%= link_to 'View All', '/browse' %></p>
+
+    <div class="row">
+      <div class="columns small-12 medium-4 large-3" ng-repeat="product in products | limitTo:limit" style="float: left">
+        <div class="callout">
+          <a href="/products/{{ product.id }}"><img src="{{ product.image }}" class="thumbnail"></a><br>
+          <p class="lead"><a href="/products/{{ product.id }}">{{ product.name }}</a></p>
+          <p class="subheader"><a href="?search={{ product.brand }}">{{ product.brand }}</a></p>
+        </div>
+      </div>
+
+<% end %>
+
+</div>
+
+<div class="row">
+  <div ng-click='loadMore()' class="load-button">Load More Results</div>
+</div>
 
 </div>
 

@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :brand, presence: true
   validates :product_type, presence: true
-  # validates :image, presence: true
+  validates :image, presence: true
   validates_uniqueness_of :name, :scope => :brand
 
   has_many :traincases

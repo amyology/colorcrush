@@ -197,6 +197,24 @@ input {
   outline: none; 
 }
 
+.load-button {
+  border: 0.2rem solid $medium-gray;
+  width: 100%;
+  margin: 1rem;
+  padding: 0.3rem;
+  color: $accent-color;
+  text-align: center;
+}
+
+.load-button:hover {
+  border: 0.2rem solid $accent-color;
+  color: $dark-gray;
+}
+
+.sort-button:hover {
+  color: $accent-color;
+}
+
 //start top bar
 .title-bar {
   background: $menu-background;

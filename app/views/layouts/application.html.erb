@@ -53,10 +53,12 @@
           <li><%= link_to 'Profile', '/user' %></li>
           <li><%= link_to 'Traincase', '/traincase' %></li>
           <li><%= link_to 'Wishlist', '/wishlist' %></li>
+          <li><%= link_to 'Browse', '/browse' %></li>
           <li><%= link_to 'Sign Out', '/users/sign_out', method: :delete %></li>
         <% else %> 
           <li><%= link_to 'Sign In', '/users/sign_in' %></li>
           <li><%= link_to 'Sign Up', '/users/sign_up' %></li>
+          <li><%= link_to 'Browse', '/browse' %></li>
         <% end %>
       </ul>
     </div>
@@ -92,10 +94,12 @@
                 <li><%= link_to 'Profile Home', '/user' %></li>
                 <li><%= link_to 'Traincase', '/traincase' %></li>
                 <li><%= link_to 'Wishlist', '/wishlist' %></li>
+                <li><%= link_to 'Browse', '/browse' %></li>
                 <li><%= link_to 'Sign Out', '/users/sign_out', method: :delete %></li>
               <% else %> 
                 <li><%= link_to 'Sign In', '/users/sign_in' %></li>
                 <li><%= link_to 'Sign Up', '/users/sign_up' %></li>
+                <li><%= link_to 'Browse', '/browse' %></li>
               <% end %>
             </ul>
           </li>

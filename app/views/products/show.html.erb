@@ -1,12 +1,12 @@
-<div class="row" style="text-align: center">
+<div class="row" style="text-align: center; margin: 0 1rem">
   <p><span class="lead" style="font-size: 2rem"><%= @product.name.upcase %></span> 
     <br> <%= link_to "#{@product.brand}", "/?search=#{@product.brand}" %></p>
     <%= image_tag @product.image.url(:medium) %><br><br>
-    <div class="columns small-12 medium-3 medium-centered large-3 large-centered" style="height: 1.5rem; background-color: rgb(<%= @color.red %>, <%= @color.green %>, <%= @color.blue %>)"></div> <br>
+    <div class="columns small-12 medium-3 medium-centered large-3 large-centered" style="color: #fff; padding: 0.5rem 0; background-color: rgb(<%= @color.red %>, <%= @color.green %>, <%= @color.blue %>)">Color</div> <br><br>
     
   <% if user_signed_in? %>
     <div class="row">
-      <div class="columns small-12 medium-3 medium-centered large-3 large-centered">
+      <div class="columns small-12 medium-4 medium-centered large-4 large-centered">
         <div style="width: 50%; float: left">
           <%= form_tag '/wishlist', method: :post do %>
             <%= hidden_field_tag :product_id, @product.id %>
