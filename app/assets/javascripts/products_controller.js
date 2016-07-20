@@ -14,12 +14,27 @@
     }
 
     $scope.sortBy = function(attribute){
+      $scope.limit = $scope.products.length;
       if (attribute != $scope.orderAttribute){
         $scope.ascdesc = false;
       } else {
         $scope.ascdesc = !$scope.ascdesc;
       }
       $scope.orderAttribute = attribute;
+    };
+
+    $scope.sortNew = function(attribute){
+      $scope.limit = $scope.products.length;
+      if (attribute = $scope.orderAttribute){
+        $scope.ascdesc = false;
+      } else {
+        $scope.ascdesc = !$scope.ascdesc;
+      }
+      $scope.orderAttribute = attribute;
+    };
+
+    $scope.showAll = function(){
+      $scope.limit = $scope.products.length;
     };
 
   }]);

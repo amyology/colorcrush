@@ -26,13 +26,13 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @options = Product.all.map { |product| [product.name, product.id] }
-    @top_dupes = @product.dupes.sort_by { |product| [product.votes.count] }.reverse!.take(5)
+    @top_dupes = @product.dupes.sort_by { |product| [product.votes.count] }.reverse!.take(3)
 
     @color = Color.find(@product.color_id)
     @matches = Color.where.not('red = ? AND green = ? AND blue = ?', @color.red, @color.green, @color.blue).
-    where('red BETWEEN ? AND ?', @color.red - 25, @color.red + 25).
-    where('green BETWEEN ? AND ?', @color.green - 25, @color.green + 25).
-    where('blue BETWEEN ? AND ?', @color.blue - 25, @color.blue + 25).take(4)
+    where('red BETWEEN ? AND ?', @color.red - 20, @color.red + 20).
+    where('green BETWEEN ? AND ?', @color.green - 20, @color.green + 20).
+    where('blue BETWEEN ? AND ?', @color.blue - 20, @color.blue + 20).take(4)
   end
 
   def view_product
