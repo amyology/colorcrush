@@ -9,7 +9,6 @@
     });
 
     $scope.limit = 8;
-
     $scope.loadMore = function() {
       $scope.limit += 8;
     }

@@ -1,4 +1,4 @@
-<h2>Edit Product Information</h2>
+<h3>Edit Product Information</h3>
 
 <%= image_tag @product.image.url(:medium) %>
 
@@ -13,6 +13,6 @@
   <%= label_tag :product_type %>
   <%= text_field_tag :product_type, @product.product_type %> <br>
 
-  <%= submit_tag 'Save' %>
+  <%= submit_tag 'Save', class: 'button'%>
 
 <% end %>

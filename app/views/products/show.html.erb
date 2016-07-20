@@ -86,8 +86,8 @@
             <%= link_to 'Sign In', '/users/sign_in' %> to vote. <br>
           <% end %>
 
-          <% if item.tags.length != 0 %>
           Compared to <b><%= @product.name %></b>, <b><%= item.product.name %></b> is <br>
+          <% if item.tags.length != 0 %>
             <% item.tags.select(:text).group(:text).having("count(*) >= 1").take(5).each do |tag| %>
               <%= tag.text %> &nbsp; 
             <% end %>
