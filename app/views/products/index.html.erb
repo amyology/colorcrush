@@ -27,7 +27,7 @@
       <p class="lead">Results for <i><%= @search_term %></i> :</p>
       <% @searched.each do |product| %>
         <div class="column">
-          <div class="callout">
+          <div class="callout fadeInSlow">
             <p><a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a></p>
             <p class="lead"><a href="/products/<%= product.id %>"><%= product.name.upcase %></a></p>
             <p class="subheader"><%= product.brand %></p>
@@ -47,7 +47,7 @@
     <p class="lead" style="margin: 1rem">Recently Added</p>
       <% @recent_products.each do |product| %>
         <div class="columns">
-          <div class="callout">
+          <div class="callout fadeInSlow">
             <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
             <p class="lead"><a href="/products/<%= product.id %>"><%= product.name %></a></p>
             <p class="subheader"><%= link_to product.brand, "/?search=#{product.brand}" %></p>
@@ -61,7 +61,7 @@
 
     <div class="row">
       <div class="columns small-12 medium-4 large-3" ng-repeat="product in products | limitTo:limit" style="float: left">
-        <div class="callout">
+        <div class="callout fadeInSlow">
           <a href="/products/{{ product.id }}"><img src="{{ product.image }}" class="thumbnail"></a><br>
           <p class="lead"><a href="/products/{{ product.id }}">{{ product.name }}</a></p>
           <p class="subheader"><a href="?search={{ product.brand }}">{{ product.brand }}</a></p>
@@ -78,4 +78,37 @@
 
 </div>
 
+<p id="back-top"><a href="#top"><span>Back <br>To Top</span></a></p>
+
 </div>
+
+
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+
+    // hide #back-top first
+    $("#back-top").hide();
+    
+    // fade in #back-top
+    $(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#back-top').fadeIn();
+        } else {
+          $('#back-top').fadeOut();
+        }
+      });
+
+      // scroll body to 0px on click
+      $('#back-top a').click(function () {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    });
+
+  });
+
+</script>

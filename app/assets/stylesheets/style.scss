@@ -204,11 +204,13 @@ input {
   padding: 0.3rem;
   color: $accent-color;
   text-align: center;
+  transition: 1s ease; 
 }
 
 .load-button:hover {
   border: 0.2rem solid $accent-color;
   color: $dark-gray;
+  transition: 1s ease; 
 }
 
 .sort-button:hover {
@@ -414,3 +416,44 @@ footer, .push {
   height: 140px; /* '.push' must be the same height as 'footer' */
 }
 // end sticky footer
+
+//back to top
+#back-top {
+  position: fixed;
+  bottom: 30px;
+  margin-left: -150px;
+}
+
+#back-top a {
+  width: 100px;
+  display: block;
+  text-align: center;
+  font: 1rem/100% $default-font, sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #bbb;
+
+  /* transition */
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  transition: 1s;
+}
+#back-top a:hover {
+  color: #fff;
+}
+
+/* arrow icon (span tag) */
+#back-top span {
+  display: block;
+  margin-bottom: 7px;
+  padding: 1rem;
+
+  /* transition */
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  transition: 1s;
+}
+
+#back-top a:hover span {
+  background-color: $dark-gray;
+}

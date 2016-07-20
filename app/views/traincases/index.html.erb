@@ -17,10 +17,11 @@
 <div class="row small-up-1 medium-up-2 large-up-3">
 
 <% if @traincase.length > 0 %>
+  <span class="lead">Items (<%= @traincase.length %>)</span><br><br>
 
   <% @traincase.each do |item| %>
     <div class="column">
-      <div class="callout">
+      <div class="callout fadeInSlow">
         <p><a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a></p>
         <p class="lead"><%= link_to "#{item.name.upcase}", "/products/#{item.id}" %></p>
         <p class="subheader"><%= link_to item.brand, "/?search=#{item.brand}" %></p>
